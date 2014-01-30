@@ -13,44 +13,70 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
+$(function () {
     $('#login-button').click(function (e) {
         e.preventDefault();
-        submitLoginPopup();
+        submitLoginForm();
     });
 });
 
-submitLoginPopup = function () {
+submitLoginForm = function () {
     console.log('Submitting login popup...');
-    var data = $nc('#login-form').serializeArray();
-//    data.push({name: 'request_from', value: 'popup'});
+    var data = $('#login-form').serializeArray();
     console.log(data);
-    $nc.ajax({
-        url: '/login',
+
+    $.ajax({
+        url: '/login/',
         type: 'POST',
         data: data,
-//        timeout: app.settings.ajax.timeout,
-        success: function (response) {
-            console.log(response);
 
-            if ($nc.trim(response) == "true") {
-                if (app.globals.login_success_redirect_url == '')
-                    window.location = '/';
-                else
-                    window.location = app.globals.login_success_redirect_url;
+        success: function (response) {
+            if (response.login == true) {
+                document.location.href = '/user/' + response.username
             } else {
-                $nc('#nc-login-popup div.nc-popup-scroll-area').html(response);
-                app.hidePopupOverlay();
-                app.bindLoginPopup();
+                $('#login-error').html(response.errors).show()
             }
         },
-        error: function (xhr, status, error) {
-            console.error('Ajax status: ' + status);
-            console.error('Ajax error: ' + error);
-            console.error('Ajax error: ' + xhr.responseText);
-            console.log('Something went wrong. Please try again.');
-            $nc('#nc-login-popup div.nc-popup-scroll-area').next('p').addClass('nc-left nc-popup-error').html('Something went wrong. Please try again.');
-            app.hidePopupOverlay();
+        error: function () {
+            console.log("Login error")
         }
     });
-}
+};
+
+$(function () {
+    $('#signup-button').click(function (e) {
+        e.preventDefault();
+        submitSignupForm();
+    });
+});
+
+submitSignupForm = function () {
+    console.log('Submitting login popup...');
+    var data = $('#signup-form').serializeArray();
+    console.log(data);
+
+    $.ajax({
+        url: '/signup/',
+        type: 'POST',
+        data: data,
+
+        success: function (response) {
+            if (response == 'true') {
+                document.location.href = '/thanks';
+            } else {
+                console.log(response)
+                $('#signup-error').html(response)
+                errors = response;
+                for (error in errors) {
+                    console.log(error);
+                    console.log(errors[error]);
+                    var id = '#error-' + error;
+                    $(id).html($(errors[error]+"ul li").text());
+                }
+            }
+        },
+        error: function () {
+            console.log("Signup error")
+        }
+    });
+};

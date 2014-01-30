@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.shortcuts import render_to_response
@@ -12,6 +13,16 @@ from forms import RegistrationForm, LoginForm
 from userprofile.models import UserProfile
 
 
+class JSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if hasattr(obj, 'isoformat'): #handles both date and datetime objects
+            return obj.isoformat()
+        elif isinstance(obj, decimal.Decimal):
+            return float(obj)
+        else:
+            return json.JSONEncoder.default(self, obj)
+
+
 def home(request):
     #import pdb;pdb.set_trace()
     if request.user.is_authenticated():
@@ -22,21 +33,6 @@ def home(request):
     signup_form = RegistrationForm()
     context['signup_form'] = signup_form
 
-    if request.method == 'POST':
-        if 'signup' in request.POST:
-            signup_form = RegistrationForm(request.POST)
-            context['signup_form'] = signup_form
-            if signup_form.is_valid():
-                signup_form.save()
-                return redirect('/thanks')
-        elif 'login' in request.POST:
-            username = request.POST.get('username', '')
-            password = request.POST.get('password', '')
-            user = auth.authenticate(username=username, password=password)
-
-            if user is not None:
-                auth.login(request, user)
-                return redirect('/user/%s' % request.user.username)
     return render_to_response('home.html', context)
 
 
@@ -44,12 +40,19 @@ def signup(request):
     if request.user.is_authenticated():
         return redirect('/user/%s' % request.user.username)
     else:
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/thanks')
-        else:
-            return redirect('/')
+        if request.method == 'POST':
+            form = RegistrationForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('true')
+            else:
+                errors_dict = {}
+                if form.errors:
+                    for error in form.errors:
+                        e = form.errors[error]
+                        errors_dict[error] = unicode(e)
+                data = json.dumps(errors_dict, cls=JSONEncoder)
+                return HttpResponse(data, content_type="application/json")
 
 
 def signup_success(request):
@@ -64,20 +67,29 @@ def login(request):
     Displays the login form and handles the login action.
     """
     if request.user.is_authenticated():
-        return  HttpResponse('true');
+        return redirect('/user/%s' % request.user.username)
 
     if request.method == "POST":
         form = LoginForm(data=request.POST)
 
         if form.is_valid():
             user = form.get_user()
-            return HttpResponse(('true'), request.session, user)
+            if user is not None:
+                auth.login(request, user)
+                dict = {'login': True, 'username': user.username}
+
+                data = json.dumps(dict, cls=JSONEncoder)
+                return HttpResponse(data, content_type="application/json")
+
+            else:
+                dict = {'login': False, 'errors': "Please enter a correct email and password."}
+                data = json.dumps(dict, cls=JSONEncoder)
+                return HttpResponse(data, content_type="application/json")
         else:
-            template = "user/login-form.html"
-    else:
-        form = LoginForm()
-        template = "users/login.html"
-    return TemplateResponse(request, template, {'form': form})
+            dict = {'login': False, 'errors': form.errors}
+
+            data = json.dumps(dict, cls=JSONEncoder)
+            return HttpResponse(data, content_type="application/json")
 
 
 @login_required(login_url='/')
