@@ -1,0 +1,28 @@
+<form id="signup-form" action="." method="POST">{% csrf_token %}
+    <ul>
+        <li>{{ signup_form.non_field_errors }}</li>
+        <li>
+            {{ signup_form.first_name }}
+            <span>{{ signup_form.first_name.errors }}</span>
+            {{ signup_form.last_name }}
+            <span>{{ signup_form.last_name.errors }}</span>
+        </li>
+        <li>
+            {{ signup_form.email }}
+            <span>{{ signup_form.email.errors }}</span>
+        </li>
+        <li>
+            {{ signup_form.username }}
+            <span>{{ signup_form.username.errors }}</span>
+        </li>
+        <li>
+            {{ signup_form.password1 }}
+            <span>{{ signup_form.password1.errors }}</span>
+        </li>
+        <li>
+            {{ signup_form.password2 }}
+            <span>{{ signup_form.password2.errors }}</span>
+        </li>
+    </ul>
+    <input type="submit" name="signup" value="signup"/>
+</form>

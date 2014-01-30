@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        {% block title %}
+            books.com
+        {% endblock %}
+    </title>
+
+    {% block css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}/static/css/style.css"/>
+    {% endblock %}
+
+    {% block js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}/static/js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}/static/js/script.js"></script>
+
+    {% endblock %}
+
+    {% block meta %}{% endblock %}
+</head>
+
+<body>
+{% block header %}
+    <div class="header">
+        <div class="logo">
+            <a href="/">
+                <img src="{{ STATIC_URL }}/static/img/logo.jpeg" alt="logo"/>
+                <span class="logo-text">books.com</span>
+            </a>
+        </div>
+
+
+        <div class="header-right">
+            {% if login_mode %}
+                {% include "partial/login_head.html" %}
+            {% else %}
+                {% include "user/login-form.html" %}
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+{% block page %}{% endblock %}
+{% block footer %}{% endblock %}
+</body>
+
+</html>

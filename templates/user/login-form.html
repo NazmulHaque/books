@@ -1,0 +1,6 @@
+<form id="login-form" action="." method="POST">{% csrf_token %}
+    <input type="text" name="username" placeholder="Username"/>
+    <input type="password" name="password" placeholder="Password"/>
+
+    <input id="login-button"type="submit" name="login" value="login"/>
+</form>

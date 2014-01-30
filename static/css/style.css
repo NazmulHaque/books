@@ -1,0 +1,94 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: block;
+    background-color: #FAF0E6;
+}
+
+.clear {
+    clear: both;
+}
+
+.header {
+    width: 100%;
+    height: 40px;
+    background-color: #66CCCC;
+    border-top: 5px solid #CCFFFF;
+}
+
+.logo {
+    width: 25%;
+    float: left;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.logo img {
+    height: 30px;
+    padding: 5px;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+.logo-text {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.header-right {
+    float: right;
+    padding: 8px;
+    width: 30%;
+    text-align: right;
+}
+
+.content {
+    padding: 0;
+    margin: 0;
+    border-top: 3px solid #4B0082;
+}
+
+.sidebar {
+    width: 55%;
+    float: left;
+}
+
+.signup-form {
+    float: right;
+    width: 40%;
+    text-align: left;
+}
+
+.signup-form ul {
+    list-style-type: none;
+}
+
+.logout, .profile {
+    float: right;
+    padding:0 0 0 5px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.header-right  a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#user-name {
+    cursor: pointer;
+}
+
+#user-name img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.user-settings {
+    display: none;
+    list-style-type: none;
+}
