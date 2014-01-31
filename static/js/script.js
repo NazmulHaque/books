@@ -21,7 +21,7 @@ $(function () {
 });
 
 submitLoginForm = function () {
-    console.log('Submitting login popup...');
+    console.log("Login processing ...");
     var data = $('#login-form').serializeArray();
     console.log(data);
 
@@ -30,18 +30,48 @@ submitLoginForm = function () {
         type: 'POST',
         data: data,
 
-        success: function (response) {
-            if (response.login == true) {
-                document.location.href = '/user/' + response.username
-            } else {
-                $('#login-error').html(response.errors).show()
+        beforeSend: function () {
+            if (checkLoginEmptyFields(data) == false) {
+                return false;
             }
         },
+
+        success: loginAuthentication,
+
         error: function () {
             console.log("Login error")
         }
     });
 };
+
+checkLoginEmptyFields = function (data) {
+    var loginFormInputs = $("#login-form input");
+    loginFormInputs.removeClass('empty-input');
+
+    if (data[1].value == '' || data[2].value == '') {
+        $('#login-error').html('');
+
+        if (data[1].value == '' && data[2].value == '') {
+            loginFormInputs.addClass('empty-input');
+        } else if (data[1].value == '') {
+            $("#login-form input[name='username']").addClass('empty-input');
+        } else if (data[2].value == "") {
+            $("#login-form input[name='password']").addClass('empty-input');
+        }
+        return false;
+    } else {
+        return true;
+    }
+};
+
+loginAuthentication = function (response) {
+    if (response.login == true) {
+        window.location = '/user/' + response.username
+    } else {
+        $('#login-error').html(response.errors);
+    }
+};
+
 
 $(function () {
     $('#signup-button').click(function (e) {
@@ -59,19 +89,14 @@ submitSignupForm = function () {
         url: '/signup/',
         type: 'POST',
         data: data,
-
         success: function (response) {
             if (response == 'true') {
-                document.location.href = '/thanks';
+                window.location = '/thanks';
             } else {
-                console.log(response)
-                $('#signup-error').html(response)
-                errors = response;
-                for (error in errors) {
-                    console.log(error);
-                    console.log(errors[error]);
+                $("#login-error").html('');
+                for (error in response) {
                     var id = '#error-' + error;
-                    $(id).html($(errors[error]+"ul li").text());
+                    $(id).html($(response[error] + "ul li").text());
                 }
             }
         },

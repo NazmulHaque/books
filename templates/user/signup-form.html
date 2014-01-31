@@ -1,27 +1,65 @@
-<form id="signup-form">{% csrf_token %}
+<h3>Sign Up</h3>
+<form id="signup-form" class="signup-form">{% csrf_token %}
     <ul>
         <li>
-            <input type="text" placeholder="First Name" name="first_name"/>
-            <span id="error-first_name"></span>
-            <input type="text" placeholder="last Name" name="last_name"/>
-            <span id="error-last_name"></span>
+            <div>
+                <div class="firstname">
+                    <div>
+                        <div class="label">First Name <span class="required">*</span></div>
+                        <div>
+                            <input type="text" name="first_name"/>
+                        </div>
+                        <div id="error-first_name" class="signup-error"></div>
+                    </div>
+                </div>
+                <div class="lastname">
+                    <div>
+                        <div class="label">Last Name <span class="required">*</span></div>
+                        <div>
+                            <input type="text" name="last_name"/>
+                        </div>
+                        <div id="error-last_name" class="signup-error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
         </li>
         <li>
-            <input type="email" placeholder="Enter Your Email Address" name="email"/>
-            <span id="error-email"></span>
+            <div>
+                <div class="label">Email <span class="required">*</span></div>
+                <div>
+                    <input type="email" name="email"/>
+                </div>
+                <div id="error-email" class="signup-error"></div>
+            </div>
         </li>
         <li>
-            <input type="text" placeholder="Choose Username" name="username"/>
-            <span id="error-username"></span>
+            <div>
+                <div class="label">Username <span class="required">*</span></div>
+                <div>
+                    <input type="text" name="username"/>
+                </div>
+                <div id="error-username" class="signup-error"></div>
+            </div>
         </li>
         <li>
-            <input type="password" placeholder="Choose Password" name="password1"/>
-            <span id="error-password1"></span>
+            <div>
+                <div class="label">Password <span class="required">*</span></div>
+                <div>
+                    <input type="password" name="password1"/>
+                </div>
+                <div id="error-password1" class="signup-error"></div>
+            </div>
         </li>
         <li>
-            <input type="password" placeholder="Re-type Password" name="password2"/>
-            <span id="error-password2"></span>
+            <div>
+                <div class="label">Confirm Password <span class="required">*</span></div>
+                <div>
+                    <input type="password" name="password2"/>
+                </div>
+                <div id="error-password2" class="signup-error"></div>
+            </div>
         </li>
     </ul>
-    <input id="signup-button" type="submit" value="signup"/>
 </form>
+<a id="signup-button" class="signup-button" href="">Sign Up</a>

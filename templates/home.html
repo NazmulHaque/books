@@ -1,10 +1,19 @@
 {% extends "base/base.html" %}
 
-{% block page %}
+{% block content %}
     <div class="content">
-        <div class="sidebar">Search</div>
+        <div class="home-message">
+            <h3>Why Books.Com</h3>
+            <div class="why-books"">
+                <ul>
+                    <li>All Books at <strong>One</strong> place</li>
+                    <li>Buy New & Used Books</li>
+                    <li>Sell New & Used Books</li>
+                </ul>
+            </div>
+        </div>
 
-        <div class="signup-form">
+        <div class="sidebar">
             {% include "user/signup-form.html" %}
         </div>
     </div>

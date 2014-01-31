@@ -1,7 +1,16 @@
-<form id="login-form">{% csrf_token %}
-    <div id="login-error" class="login-error"></div>
-    <input type="text" name="username" placeholder="Username"/>
-    <input type="password" name="password" placeholder="Password"/>
-
-    <input id="login-button" type="submit" value="login"/>
-</form>
+<div>
+    <form id="login-form" class="login-form">{% csrf_token %}
+        <div>
+            <div class="login-inputs">
+                <div>
+                    <input type="text" name="username" placeholder="Username"/>
+                    <input type="password" name="password" placeholder="Password"/>
+                </div>
+                <div id="login-error" class="login-error"></div>
+            </div>
+            <div class="login-button">
+                <a id="login-button" href="">Login</a>
+            </div>
+        </div>
+    </form>
+</div>
