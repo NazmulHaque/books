@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="left-sidebar">
+            <h4>Edit Your Profile</h4>
+            <ul>
+                <li>Basic Information</li>
+                <li>Profile Photo</li>
+                <li>Change Password</li>
+            </ul>
+        </div>
+        <div class="form-body">
+            <h2>Upload Photo</h2>
+
+            <form action="/user/{{ user.username }}/edit-profile/" method="POST"
+                  enctype="multipart/form-data">{% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Update"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

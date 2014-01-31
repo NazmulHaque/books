@@ -99,9 +99,8 @@ def index(request, user_name):
             'user': request.user,
             'login_mode': True
         }
-        if UserProfile.objects.filter(user=request.user).count():
-            userprofile = UserProfile.objects.get(user=request.user)
-            context['userprofile'] = userprofile
+        if request.user.is_superuser:
+            context['user_admin'] = True
 
         return render_to_response('user/index.html', context)
     else:

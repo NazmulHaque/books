@@ -83,14 +83,21 @@ body {
 .sidebar {
     margin-top: 20px;
     float: right;
-    width: 38%;
+    width: 32%;
     background-color: #ffffff;
     text-align: center;
     padding: 0 0 35px 0;
 }
 
+.signup-form {
+    margin: 0 auto;
+    width: 80%;
+}
+
 .signup-form ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .firstname, .lastname {
@@ -102,7 +109,7 @@ body {
 }
 
 .signup-form input {
-    width: 346px;
+    width: 280px;
     height: 25px;
     font-size: 14px;
 }
@@ -115,12 +122,12 @@ body {
 }
 
 .firstname input {
-    width: 200px;
+    width: 142px;
     margin-right: 10px;
 }
 
 .lastname input {
-    width: 130px;
+    width: 120px;
 }
 
 .sidebar h3 {
@@ -130,11 +137,10 @@ body {
     margin: 10px 0;
 }
 
-.logout, .profile {
+.profile {
     float: right;
     padding: 0 0 0 5px;
-    color: #ffffff;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .header-right a {
@@ -147,15 +153,32 @@ body {
 }
 
 #user-name img {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     vertical-align: middle;
 }
 
 .user-settings {
     display: none;
-    list-style-type: none;
+    background-color: #ffffff;
 }
+
+.user-settings ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user-settings ul li {
+    text-align: center;
+}
+
+.user-settings ul li a {
+    color: #000000;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
 .login-inputs, .login-button {
     float: left;
 }
@@ -196,9 +219,14 @@ body {
     border: 2px solid #ff0000;
 }
 
-.signup-button {
+.signup-form li.signup-button {
+    height: auto;
+    margin: 20px 0;
+}
+
+.signup-button a {
     text-decoration: none;
-    padding: 10px 100px 10px 100px;
+    padding: 10px 110px 10px 110px;
     color: #ffffff;
     font-size: 20px;
     background-color: #191970;
@@ -221,9 +249,43 @@ body {
     background-color: #DCDCDC;
     text-align: center;
     font-size: 12px;
+    margin: 5px 0;
 }
 
 .footer p {
     padding: 10px 0 10px 0;
     margin: 0;
+}
+
+.left-sidebar, .form-body {
+    float: left;
+}
+
+.left-sidebar {
+    width: 30%;
+    margin: 0 10px 0;
+    padding: 0;
+}
+
+.form-body {
+    width: 68%;
+}
+
+.left-sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.left-sidebar ul li {
+    background-color: #ffffff;
+    padding: 10px 80px 10px 10px;
+    border-bottom: 2px solid #DCDCDC;
+    text-align: left;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.left-sidebar ul li:last-of-type {
+    border: none;
 }

@@ -7,7 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'books.views.home'),
-    url(r'^user/(?P<user_name>\w+)/edit_profile/$', 'userprofile.views.user_profile'),
+    url(r'^user/(?P<user_name>\w+)/edit-profile/$', 'userprofile.views.user_profile'),
     url(r'^user/(?P<user_name>\w+)/$', 'books.views.index'),
     url(r'^login/$', 'books.views.login'),
     url(r'^logout/$', 'books.views.logout'),

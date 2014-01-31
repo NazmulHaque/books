@@ -20,7 +20,9 @@ def user_profile(request, user_name):
             context['form'] = form
     context['login_mode'] = True
     context['user'] = request.user
+    if request.user.is_superuser:
+            context['user_admin'] = True
 
-    return render_to_response('user/edit_profile.html', context)
+    return render_to_response('user/edit-profile.html', context)
 
 # Create your views here.
