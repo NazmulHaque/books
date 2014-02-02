@@ -83,7 +83,6 @@ $(function () {
 submitSignupForm = function () {
     console.log('Submitting login popup...');
     var data = $('#signup-form').serializeArray();
-    console.log(data);
 
     $.ajax({
         url: '/signup/',
@@ -93,7 +92,7 @@ submitSignupForm = function () {
             if (response == 'true') {
                 window.location = '/thanks';
             } else {
-                $("#login-error").html('');
+                $(".signup-error").html('');
                 for (error in response) {
                     var id = '#error-' + error;
                     $(id).html($(response[error] + "ul li").text());
@@ -105,3 +104,78 @@ submitSignupForm = function () {
         }
     });
 };
+
+$(function () {
+    $('#profile-menu li').click(function (e) {
+        e.preventDefault();
+        var profileMenuType = e.target.id;
+        console.log(profileMenuType);
+        showInfoForm(profileMenuType);
+    });
+});
+
+showInfoForm = function ($profileMenuType) {
+    console.log("Showing Basic Info Form ...");
+    console.log($profileMenuType);
+    var url = '';
+    if ($profileMenuType == 'update-basic-info') {
+        url = '/user/update-basic-info/';
+    } else if ($profileMenuType == 'update-profile-photo') {
+        url = '/user/update-profile-photo/';
+    } else if ($profileMenuType == 'change-password') {
+        url = '/user/change-password/'
+    }
+    console.log(url);
+    $.ajax({
+        url: url,
+        success: function (response) {
+            $('#profile-update-default-view').hide();
+            $('#profile-update-form').html(response);
+        },
+        error: function () {
+            console.log('error')
+        }
+    });
+};
+
+$(function () {
+    $(document).on('click', "#submit-basic-info-button", function (e) {
+        console.log("Submitting Basic Info Form...");
+        e.preventDefault();
+        submitBasicInfoForm();
+    });
+});
+
+submitBasicInfoForm = function () {
+    console.log('Submitting Basic Info Form...');
+    var data = $('#update-basic-info-form').serializeArray();
+    console.log(data);
+
+    $.ajax({
+        url: "/user/update-basic-info/",
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            console.log('Submitted');
+            if (response == 'true') {
+                $('#profile-update-message').html("Your Basic Profile Info is Successfully Updated.");
+                setTimeout( "$('#profile-update-message').hide();",3000 );
+                $('#profile-update-form').hide();
+                $('#profile-update-default-view').html('');
+            } else {
+                for (error in response) {
+                    var id = '#error-' + error;
+                    $(id).html($(response[error] + "ul li").text());
+                }
+            }
+        },
+        error: function () {
+            console.log('error');
+        }
+    });
+};
+$(function () {
+    $(document).on('change', "#update-basic-info-form input, #update-basic-info-form textarea", function () {
+        $("#submit-basic-info-button").removeAttr("disabled", "disabled");
+    });
+});

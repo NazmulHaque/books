@@ -10,18 +10,7 @@ from django.contrib.auth.decorators import *
 
 from django.contrib.auth.forms import AuthenticationForm
 from forms import RegistrationForm, LoginForm
-from userprofile.models import UserProfile
-
-
-class JSONEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if hasattr(obj, 'isoformat'): #handles both date and datetime objects
-            return obj.isoformat()
-        elif isinstance(obj, decimal.Decimal):
-            return float(obj)
-        else:
-            return json.JSONEncoder.default(self, obj)
-
+from utils import JSONEncoder
 
 def home(request):
     #import pdb;pdb.set_trace()

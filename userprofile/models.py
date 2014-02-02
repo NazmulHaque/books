@@ -11,9 +11,22 @@ from django.contrib.auth.models import User
 def get_upload_file_name(instance, filename):
     return "static/img/profile_photos/%s" % filename
 
+
 class UserProfile(models.Model):
+    GENDER_CHOICES = (
+        ('MALE', 'Male',),
+        ('FEMALE', 'Female',),
+    )
     user = models.OneToOneField(User)
-    profile_photo = models.FileField(upload_to=get_upload_file_name)
+    fullname = models.CharField(max_length=200, null=True)
+    contact_address = models.TextField(null=True)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True)
+    date_of_birth = models.DateField(null=True)
+    contact_number = models.IntegerField(null=True)
+    profile_photo = models.FileField(upload_to=get_upload_file_name, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.fullname
 
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

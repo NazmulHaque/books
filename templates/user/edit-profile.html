@@ -1,23 +1,19 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-    <div class="content">
-        <div class="left-sidebar">
-            <h4>Edit Your Profile</h4>
-            <ul>
-                <li>Basic Information</li>
-                <li>Profile Photo</li>
-                <li>Change Password</li>
-            </ul>
+    <div class="left-sidebar">
+        <h4>Edit Your Profile</h4>
+        <ul id="profile-menu">
+            <li id="update-basic-info">Basic Information</li>
+            <li id="update-profile-photo">Profile Photo</li>
+            <li id="change-password">Change Password</li>
+        </ul>
+    </div>
+    <div class="form-body">
+        <div id="profile-update-message"></div>
+        <div id="profile-update-default-view">
+            {% include "user-profile/default.html" %}
         </div>
-        <div class="form-body">
-            <h2>Upload Photo</h2>
-
-            <form action="/user/{{ user.username }}/edit-profile/" method="POST"
-                  enctype="multipart/form-data">{% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Update"/>
-            </form>
-        </div>
+        <div id="profile-update-form"></div>
     </div>
 {% endblock %}

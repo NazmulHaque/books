@@ -23,7 +23,9 @@
 {% block header %}
     {% include "partial/header.html" %}
 {% endblock %}
-{% block content %}{% endblock %}
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
 {% block footer %}
     {% include "partial/footer.html" %}
 {% endblock %}

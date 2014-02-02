@@ -1,6 +1,6 @@
 <div class="profile">
     <div id="user-name">
-        <span>{{ user.first_name }} {{ user.last_name }}</span>
+        <span>{{ user.userprofile.fullname }}</span>
         {% if user.userprofile.profile_photo %}
             <img src="/{{ user.userprofile.profile_photo }}" alt="Profile Photo"/>
         {% else %}
@@ -15,7 +15,7 @@
                 </li>
             {% endif %}
             <li>
-                <a href="/user/{{ user.username }}/edit-profile">Edit Profile</a>
+                <a href="/user/edit-profile">Edit Profile</a>
             </li>
             <li>
                 <a href="/logout">Logout</a>

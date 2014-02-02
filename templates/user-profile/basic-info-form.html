@@ -1,0 +1,61 @@
+<h1>Update Your Basic Information</h1>
+<form id="update-basic-info-form">{% csrf_token %}
+    <ul>
+        <li>
+            <div>
+                <div class="label">Full Name</div>
+                <div>
+                    <input type="text" name="fullname" value="{{ user_profile.fullname }}"/>
+                </div>
+                <div id="error-fullname" class="signup-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Contact Number</div>
+                <div>
+                    <input type="text" name="contact_number" value="{{ user_profile.contact_number }}"/>
+                </div>
+                <div id="error-contact_number" class="signup-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Contact Address</div>
+                <div>
+                    <textarea name="contact_address">{{ user_profile.contact_address }}</textarea>
+                </div>
+                <div id="error-contact_address" class="signup-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Date of Birth</div>
+                <div>
+                    <input type="date" name="date_of_birth" value="{{ user_profile.date_of_birth|date:'Y-m-d' }}"/>
+                </div>
+                <div id="error-date_of_birth" class="signup-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Gender</div>
+                <div>
+                    {% if user_profile.gender == 'MALE' %}
+                        <input type="radio" name="gender" value="MALE" checked/><span>Male</span>
+                        <input type="radio" name="gender" value="FEMALE"/><span>Female</span>
+                    {% elif user_profile.gender == 'FEMALE' %}
+                        <input type="radio" name="gender" value="MALE"/><span>Male</span>
+                        <input type="radio" name="gender" value="FEMALE" checked/><span>Female</span>
+                    {% else %}
+                        <input type="radio" name="gender" value="MALE"/><span>Male</span>
+                        <input type="radio" name="gender" value="FEMALE"/><span>Female</span>
+                    {% endif %}
+
+                </div>
+                <div id="error-gender" class="signup-error"></div>
+            </div>
+        </li>
+    </ul>
+</form>
+<button id="submit-basic-info-button" disabled>Update</button>
