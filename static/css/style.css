@@ -51,7 +51,10 @@ body {
     padding: 5px 20px 5px 20px;
     border-radius: 3px;
 }
-
+.search-link a.post-ad-button {
+    background-color: #000000;
+    margin-left: 10px;
+}
 .header-right {
     float: right;
     margin: 7px 25px 10px 0;
@@ -289,4 +292,64 @@ body {
 
 .left-sidebar ul li:last-of-type {
     border: none;
+}
+
+.profile-update-form {
+    width: 50%;
+    margin: 0 auto;
+    float: left;
+}
+
+.basic-info-form ul,
+.change-password-form ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.basic-info-form ul li,
+.change-password-form ul li{
+    margin-bottom: 10px;
+}
+
+.basic-info-form ul li input,
+.change-password-form ul li input{
+    font-size: 14px;
+    padding: 10px;
+    width: 250px;
+}
+
+.basic-info-form ul li textarea {
+    height: 100px;
+    width: 250px;
+    padding: 10px;
+    font-size: 14px;
+}
+.basic-info-form ul li input.gender {
+    width: 20px;
+}
+
+.basic-info-form ul li .label,
+.change-password-form ul li .label{
+    font-size: 18px;
+}
+
+.info-submit-button,
+.change-password-button {
+    padding: 10px 40px 10px 40px;
+    font-size: 20px;
+    background-color: #0000FF;
+    color: #ffffff;
+    margin: 10px 0 0 60px;
+}
+.change-password-button {
+    padding: 10px;
+    background-color: #ff0000;
+    margin: 10px 0 0 42px;
+}
+
+.update-profile-photo-button {
+    padding: 5px;
+    background-color: #CCFFFF;
+    font-size: 14px;
 }

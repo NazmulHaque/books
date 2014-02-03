@@ -1,5 +1,8 @@
-<h3>Update Basic Information</h3>
-<form id="update-basic-info-form" class="basic-info-form">{% csrf_token %}
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h3>Update Basic Information</h3>
+<form id="update-basic-info-first-time-form" class="basic-info-form">{% csrf_token %}
     <ul>
         <li>
             <div>
@@ -58,4 +61,5 @@
         </li>
     </ul>
 </form>
-<button id="submit-basic-info-button" class="info-submit-button" disabled>Update</button>
+<button id="submit-basic-info-first-time-button" class="info-submit-button" disabled>Update</button>
+{% endblock %}

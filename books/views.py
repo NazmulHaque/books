@@ -6,11 +6,12 @@ from django.shortcuts import redirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import *
-#from django.template import RequestContext
+from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth.forms import AuthenticationForm
 from forms import RegistrationForm, LoginForm
 from utils import JSONEncoder
+from userprofile.models import UserProfile
 
 def home(request):
     #import pdb;pdb.set_trace()
@@ -83,17 +84,22 @@ def login(request):
 
 @login_required(login_url='/')
 def index(request, user_name):
-    if user_name == request.user.username:
-        context = {
-            'user': request.user,
-            'login_mode': True
-        }
-        if request.user.is_superuser:
-            context['user_admin'] = True
-
-        return render_to_response('user/index.html', context)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        return redirect('/user/update-profile-first-time')
     else:
-        return redirect('/user/%s' % request.user.username)
+        if user_name == request.user.username:
+            context = {
+                'user': request.user,
+                'login_mode': True
+            }
+            if request.user.is_superuser:
+                context['user_admin'] = True
+
+            return render_to_response('user/index.html', context)
+        else:
+            return redirect('/user/%s' % request.user.username)
 
 
 @login_required(login_url='/')
