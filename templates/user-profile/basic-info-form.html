@@ -7,7 +7,7 @@
                 <div>
                     <input type="text" name="fullname" value="{{ user_profile.fullname }}"/>
                 </div>
-                <div id="error-fullname" class="signup-error"></div>
+                <div id="error-fullname" class="form-error"></div>
             </div>
         </li>
         <li>
@@ -16,7 +16,7 @@
                 <div>
                     <input type="text" name="contact_number" value="{{ user_profile.contact_number }}"/>
                 </div>
-                <div id="error-contact_number" class="signup-error"></div>
+                <div id="error-contact_number" class="form-error"></div>
             </div>
         </li>
         <li>
@@ -25,7 +25,7 @@
                 <div>
                     <textarea name="contact_address">{{ user_profile.contact_address }}</textarea>
                 </div>
-                <div id="error-contact_address" class="signup-error"></div>
+                <div id="error-contact_address" class="form-error"></div>
             </div>
         </li>
         <li>
@@ -34,7 +34,7 @@
                 <div>
                     <input type="date" name="date_of_birth" value="{{ user_profile.date_of_birth|date:'Y-m-d' }}"/>
                 </div>
-                <div id="error-date_of_birth" class="signup-error"></div>
+                <div id="error-date_of_birth" class="form-error"></div>
             </div>
         </li>
         <li>
@@ -53,7 +53,7 @@
                     {% endif %}
 
                 </div>
-                <div id="error-gender" class="signup-error"></div>
+                <div id="error-gender" class="form-error"></div>
             </div>
         </li>
     </ul>

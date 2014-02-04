@@ -51,10 +51,12 @@ body {
     padding: 5px 20px 5px 20px;
     border-radius: 3px;
 }
+
 .search-link a.post-ad-button {
     background-color: #000000;
     margin-left: 10px;
 }
+
 .header-right {
     float: right;
     margin: 7px 25px 10px 0;
@@ -208,13 +210,13 @@ body {
     border: 3px solid #2F4F4F;
 }
 
-.login-error, .signup-error {
+.form-error {
     color: #ff0000;
     font-size: 12px;
     text-align: left;
 }
 
-.login-error {
+login-form .form-error {
     margin-left: 30px;
 }
 
@@ -301,36 +303,46 @@ body {
 }
 
 .basic-info-form ul,
-.change-password-form ul {
+.change-password-form ul,
+.post-ad-form ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 .basic-info-form ul li,
-.change-password-form ul li{
+.change-password-form ul li,
+.post-ad-form ul li {
     margin-bottom: 10px;
 }
 
 .basic-info-form ul li input,
-.change-password-form ul li input{
+.change-password-form ul li input,
+.post-ad-form ul li input {
     font-size: 14px;
     padding: 10px;
     width: 250px;
 }
 
-.basic-info-form ul li textarea {
+.basic-info-form ul li textarea,
+.post-ad-form ul li textarea {
     height: 100px;
     width: 250px;
     padding: 10px;
     font-size: 14px;
 }
+
+.post-ad-form ul li input.price {
+    width: 100px;
+    padding: 6px;
+}
+
 .basic-info-form ul li input.gender {
     width: 20px;
 }
 
 .basic-info-form ul li .label,
-.change-password-form ul li .label{
+.change-password-form ul li .label {
     font-size: 18px;
 }
 
@@ -342,6 +354,7 @@ body {
     color: #ffffff;
     margin: 10px 0 0 60px;
 }
+
 .change-password-button {
     padding: 10px;
     background-color: #ff0000;
@@ -352,4 +365,56 @@ body {
     padding: 5px;
     background-color: #CCFFFF;
     font-size: 14px;
+}
+
+.post-ad-button {
+    padding: 10px 30px 10px 30px;
+    margin: 10px 0 0 200px;
+    background-color: #CCFFFF;
+    font-size: 18px;
+}
+
+.user-ads-view {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.user-ads-view h3 {
+    text-align: center;
+}
+
+.user-ads-view ul{
+    padding: 0;
+    margin: 0;
+}
+
+.user-ads-view ul li {
+    padding: 5px;
+    margin: 0;
+    text-align: center;
+    display: inline-block;
+    border-right: 2px solid #808080;
+    width: 120px;
+}
+
+.user-ads-view ul li:first-of-type {
+    width: 150px;
+}
+
+.user-ads-view ul li:nth-of-type(2) {
+    width: 230px;
+}
+.user-ads-view ul li:last-of-type {
+    width: 90px;
+    border: none;
+}
+.user-ads-view ul:nth-of-type(even) {
+    background-color: #C0C0C0;
+}
+
+.user-ads-view ul:nth-of-type(odd) {
+    background-color: #ffffff;
+}
+.user-ads-view ul:first-of-type {
+    background-color: #6495ED;
 }

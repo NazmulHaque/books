@@ -1,5 +1,30 @@
 {% extends "base/base.html" %}
 {% block content %}
-    <p>Under Construction !!</p>
+
+    {% if products %}
+        <div class="user-ads-view">
+            <h3>Your posts</h3>
+            <ul>
+                <li>Title</li>
+                <li>Description</li>
+                <li>Category</li>
+                <li>Language</li>
+                <li>Created At</li>
+                <li>Price</li>
+            </ul>
+            {% for product in products %}
+                <ul>
+                    <li>{{ product.title }}</li>
+                    <li>{{ product.description }}</li>
+                    <li>{{ product.category }}</li>
+                    <li>{{ product.language }}</li>
+                    <li>{{ product.created_at|date:"d M Y" }}</li>
+                    <li>BDT{{ product.price }}</li>
+                </ul>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3>You have no Ads</h3>
+    {% endif %}
 {% endblock %}
 

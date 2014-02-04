@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^user/', include('userprofile.urls')),
+    url(r'^product/', include('products.urls')),
     url(r'^$', 'books.views.home'),
     url(r'^login/$', 'books.views.login'),
     url(r'^logout/$', 'books.views.logout'),

@@ -2,64 +2,57 @@
 
 {% block content %}
     <h3>Update Basic Information</h3>
-<form id="update-basic-info-first-time-form" class="basic-info-form">{% csrf_token %}
-    <ul>
-        <li>
-            <div>
-                <div class="label">Full Name</div>
+    <form id="update-basic-info-first-time-form" class="basic-info-form">{% csrf_token %}
+        <ul>
+            <li>
                 <div>
-                    <input type="text" name="fullname" value="{{ user_profile.fullname }}"/>
+                    <div class="label">Full Name <span class="required">*</span></div>
+                    <div>
+                        <input type="text" name="fullname" />
+                    </div>
+                    <div id="error-fullname" class="form-error"></div>
                 </div>
-                <div id="error-fullname" class="signup-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Contact Number</div>
+            </li>
+            <li>
                 <div>
-                    <input type="text" name="contact_number" value="{{ user_profile.contact_number }}"/>
+                    <div class="label">Contact Number <span class="required">*</span></div>
+                    <div>
+                        <input type="text" name="contact_number" />
+                    </div>
+                    <div id="error-contact_number" class="form-error"></div>
                 </div>
-                <div id="error-contact_number" class="signup-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Contact Address</div>
+            </li>
+            <li>
                 <div>
-                    <textarea name="contact_address">{{ user_profile.contact_address }}</textarea>
+                    <div class="label">Contact Address</div>
+                    <div>
+                        <textarea name="contact_address"></textarea>
+                    </div>
+                    <div id="error-contact_address" class="form-error"></div>
                 </div>
-                <div id="error-contact_address" class="signup-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Date of Birth</div>
+            </li>
+            <li>
                 <div>
-                    <input type="date" name="date_of_birth" value="{{ user_profile.date_of_birth|date:'Y-m-d' }}"/>
+                    <div class="label">Date of Birth <span class="required">*</span></div>
+                    <div>
+                        <input type="date" name="date_of_birth"/>
+                    </div>
+                    <div id="error-date_of_birth" class="form-error"></div>
                 </div>
-                <div id="error-date_of_birth" class="signup-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Gender</div>
+            </li>
+            <li>
                 <div>
-                    {% if user_profile.gender == 'MALE' %}
-                        <input class="gender" type="radio" name="gender" value="MALE" checked/><span>Male</span>
-                        <input class="gender" type="radio" name="gender" value="FEMALE"/><span>Female</span>
-                    {% elif user_profile.gender == 'FEMALE' %}
-                        <input class="gender" type="radio" name="gender" value="MALE"/><span>Male</span>
-                        <input class="gender" type="radio" name="gender" value="FEMALE" checked/><span>Female</span>
-                    {% else %}
-                        <input class="gender" type="radio" name="gender" value="MALE"/><span>Male</span>
-                        <input class="gender" type="radio" name="gender" value="FEMALE"/><span>Female</span>
-                    {% endif %}
+                    <div class="label">Gender <span class="required">*</span></div>
+                    <div>
 
+                        <input class="gender" type="radio" name="gender" value="MALE"/><span>Male</span>
+                        <input class="gender" type="radio" name="gender" value="FEMALE"/><span>Female</span>
+
+                    </div>
+                    <div id="error-gender" class="form-error"></div>
                 </div>
-                <div id="error-gender" class="signup-error"></div>
-            </div>
-        </li>
-    </ul>
-</form>
-<button id="submit-basic-info-first-time-button" class="info-submit-button" disabled>Update</button>
+            </li>
+        </ul>
+    </form>
+    <button id="submit-basic-info-first-time-button" class="info-submit-button" disabled>Update</button>
 {% endblock %}

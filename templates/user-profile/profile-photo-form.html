@@ -7,6 +7,7 @@
     {% endif %}
 </div>
 <div>
+    {{ error }}
     <form id="update-profile-photo-form" action="/user/upload-profile-photo/" method="POST"
           enctype="multipart/form-data">{% csrf_token %}
         <input type="file" name="profile_photo"/>

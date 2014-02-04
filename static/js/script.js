@@ -1,5 +1,5 @@
 var count = 0
-$(document).ready(function () {
+$(function () {
     $('#user-name').click(function () {
         if (count == 0) {
             $('.user-settings').show();
@@ -26,18 +26,33 @@ $(document).ready(function () {
         showUserInfoForm(profileMenuType);
     });
 
-    $(document).on('click', "#submit-basic-info-button", function (e) {
-        e.preventDefault();
-        submitBasicInfoForm();
-    });
     $("#submit-basic-info-first-time-button").click(function (e) {
         e.preventDefault();
         submitBasicInfoFirstTimeForm();
     });
+
+    $("#post-ad-form input, #post-ad-form textarea").change(function () {
+        $("#post-ad-button").removeAttr("disabled", "disabled");
+    });
+
+    $("#post-ad-button").click(function (e) {
+        e.preventDefault();
+        submitPostAdForm();
+    });
+
+});
+
+
+//selector after ajax load
+$(function () {
 //    $(document).on('click', "#submit-profile-photo-form", function (e) {
 //        e.preventDefault();
 //        submitProfilePhotoForm();
 //    });
+    $(document).on('click', "#submit-basic-info-button", function (e) {
+        e.preventDefault();
+        submitBasicInfoForm();
+    });
 
     $(document).on('click', "#change-password-button", function (e) {
         e.preventDefault();
@@ -68,13 +83,14 @@ submitLoginForm = function () {
                 return false;
             }
         },
-
         success: loginAuthentication,
 
-        error: function () {
-            console.log("Login error")
-        }
+        error: commonErrorMessage
     });
+};
+
+commonErrorMessage = function () {
+    console.log("Something went Wrong...")
 };
 
 checkLoginEmptyFields = function (data) {
@@ -113,21 +129,21 @@ submitSignupForm = function () {
         url: '/signup/',
         type: 'POST',
         data: data,
-        success: function (response) {
-            if (response == 'true') {
-                window.location = '/thanks';
-            } else {
-                $(".signup-error").html('');
-                for (error in response) {
-                    var id = '#error-' + error;
-                    $(id).html($(response[error] + "ul li").text());
-                }
-            }
-        },
-        error: function () {
-            console.log("Signup error")
-        }
+        success: signupSuccess,
+        error: commonErrorMessage
     });
+};
+
+signupSuccess = function (response) {
+    if (response == 'true') {
+        window.location = '/thanks';
+    } else {
+        $("#signup-form .form-error").html('');
+        for (error in response) {
+            var id = '#error-' + error;
+            $(id).html($(response[error] + "ul li").text());
+        }
+    }
 };
 
 showUserInfoForm = function ($profileMenuType) {
@@ -148,9 +164,7 @@ showUserInfoForm = function ($profileMenuType) {
             $('#profile-update-default-view').hide();
             $('#profile-update-form').html(response);
         },
-        error: function () {
-            console.log('error')
-        }
+        error: commonErrorMessage
     });
 };
 
@@ -163,23 +177,24 @@ submitBasicInfoForm = function () {
         url: "/user/update-basic-info/",
         type: 'POST',
         data: data,
-        success: function (response) {
-            if (response == 'true') {
-                $('#profile-update-message').html("Your Basic Profile Info is Successfully Updated.");
-                setTimeout("$('#profile-update-message').hide();", 3000);
-                $('#profile-update-default-view').show();
-                $('#profile-update-form').html('');
-            } else {
-                for (error in response) {
-                    var id = '#error-' + error;
-                    $(id).html($(response[error] + "ul li").text());
-                }
-            }
-        },
-        error: function () {
-            console.log('error');
-        }
+        success: basicInfoSubmissionSuccess,
+        error: commonErrorMessage
     });
+};
+
+basicInfoSubmissionSuccess = function (response) {
+    if (response == 'true') {
+        $('#profile-update-message').html("Your Basic Profile Info is Successfully Updated.");
+        setTimeout("$('#profile-update-message').hide();", 3000);
+        $('#profile-update-default-view').show();
+        $('#profile-update-form').html('');
+    } else {
+        $("#update-basic-info-form .form-error").html('');
+        for (error in response) {
+            var id = '#error-' + error;
+            $(id).html($(response[error] + "ul li").text());
+        }
+    }
 };
 
 submitBasicInfoFirstTimeForm = function () {
@@ -202,10 +217,20 @@ submitBasicInfoFirstTimeForm = function () {
                 }
             }
         },
-        error: function () {
-            console.log('error');
-        }
+        error: commonErrorMessage
     });
+};
+
+basicInfoFirstUpdateSuccess = function (response) {
+    if (response.submit == true) {
+        window.location = '/user/' + response.username;
+    } else {
+        $("#update-basic-info-first-time-form .form-error").html('');
+        for (error in response) {
+            var id = '#error-' + error;
+            $(id).html($(response[error] + "ul li").text());
+        }
+    }
 };
 
 //submitProfilePhotoForm = function () {
@@ -244,21 +269,47 @@ submitChangePasswordForm = function () {
         url: "/user/change-password/",
         type: 'POST',
         data: data,
-        success: function (response) {
-            if (response == 'true') {
-                $('#profile-update-message').html("Your Password Changed Successfully.");
-                setTimeout("$('#profile-update-message').hide();", 3000);
-                $('#profile-update-default-view').show();
-                $('#profile-update-form').html('');
-            } else {
-                for (error in response) {
-                    var id = '#error-' + error;
-                    $(id).html($(response[error] + "ul li").text());
-                }
-            }
-        },
-        error: function () {
-            console.log('error');
-        }
+        success: passwordChangeSuccess,
+        error: commonErrorMessage
     });
+};
+
+passwordChangeSuccess = function (response) {
+    if (response == 'true') {
+        $('#profile-update-message').html("Your Password Changed Successfully.");
+        setTimeout("$('#profile-update-message').hide();", 3000);
+        $('#profile-update-default-view').show();
+        $('#profile-update-form').html('');
+    } else {
+        $("#change-password-form .form-error").html('');
+        for (error in response) {
+            var id = '#error-' + error;
+            $(id).html($(response[error] + "ul li").text());
+        }
+    }
+};
+
+submitPostAdForm = function () {
+    console.log("Posting your ad...");
+    var data = $('#post-ad-form').serializeArray();
+
+    $.ajax({
+        url: "/product/add/",
+        type: 'POST',
+        data: data,
+        success: postAdSuccess,
+        error: commonErrorMessage
+    });
+};
+
+postAdSuccess = function (response) {
+    if (response.add == true) {
+        window.location = ('/user/' + response.username);
+    } else {
+        $("#post-ad-form .form-error").html('');
+        for (error in response) {
+            var id = '#error-' + error;
+            $(id).html($(response[error] + "ul li").text());
+        }
+    }
 };

@@ -1,4 +1,6 @@
 import json
+import os
+
 from django.shortcuts import render_to_response, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.context_processors import csrf
@@ -37,9 +39,13 @@ def update_profile_photo(request):
     if request.method == 'POST':
         form = UploadProfilePhoto(data=request.POST, files=request.FILES, instance=request.user.profile)
         if form.is_valid():
+            old_photo = UserProfile.objects.get(user=request.user).profile_photo
+            if old_photo:
+                os.remove(old_photo.file.name)
             form.save()
-            return HttpResponseRedirect('/user/edit-profile')
-
+            return redirect('/user/edit-profile')
+        else:
+            return redirect('/user/edit-profile')
     if UserProfile.objects.filter(user=request.user).count():
         context['user_profile'] = UserProfile.objects.get(user=request.user)
     return render_to_response('user-profile/profile-photo-form.html', context)

@@ -1,0 +1,65 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h3>Post Your Ad</h3>
+    <form id="post-ad-form" class="post-ad-form">{% csrf_token %}
+    <ul>
+        <li>
+            <div>
+                <div class="label">Title <span class="required">*</span></div>
+                <div>
+                    <input type="text" name="title"/>
+                </div>
+                <div id="error-title" class="form-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Description <span class="required">*</span></div>
+                <div>
+                    <textarea name="description"></textarea>
+                </div>
+                <div id="error-description" class="form-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Category: <span class="required">*</span>
+                    <select name="category">
+                        <option value="" selected="selected">Select Category</option>
+                        <option value="New">New</option>
+                        <option value="Used">Used</option>
+                    </select>
+                </div>
+                <div id="error-category" class="form-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Language: <span class="required">*</span>
+                    <select name="language">
+                        <option value="" selected="selected">Select Language</option>
+                        <option value="English">English</option>
+                        <option value="Bangla">Bangla</option>
+                        <option value="Arabia">Arabia</option>
+                    </select>
+                </div>
+                <div id="error-language" class="form-error"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <div class="label">Price: <span class="required">*</span></div>
+                <select name="money_type">
+                        <option value="BDT" selected="selected">BDT</option>
+                        <option value="$">USD($)</option>
+                    </select>
+                    <input class="price" type="text" name="price"/>
+                </div>
+                <div id="error-price" class="form-error"></div>
+            </div>
+        </li>
+    </ul>
+</form>
+    <button id="post-ad-button" class="post-ad-button" disabled>Post Ad</button>
+{% endblock %}

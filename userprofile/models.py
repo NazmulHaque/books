@@ -23,7 +23,7 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True)
     date_of_birth = models.DateField(null=True)
     contact_number = models.IntegerField(null=True)
-    profile_photo = models.FileField(upload_to=get_upload_file_name, null=True, blank=True)
+    profile_photo = models.FileField(upload_to=get_upload_file_name)
 
     def __unicode__(self):
         return self.fullname
