@@ -13,6 +13,8 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'books.views.logout'),
     url(r'^signup/$', 'books.views.signup'),
     url(r'^thanks/$', 'books.views.signup_success'),
+    url(r'^search/$', 'products.views.search'),
+
 
     # url(r'^books/', include('books.foo.urls')),
 

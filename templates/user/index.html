@@ -19,7 +19,7 @@
                     <li>{{ product.category }}</li>
                     <li>{{ product.language }}</li>
                     <li>{{ product.created_at|date:"d M Y" }}</li>
-                    <li>BDT{{ product.price }}</li>
+                    <li>{{ product.money_type }} {{ product.price }}</li>
                 </ul>
             {% endfor %}
         </div>

@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from books.utils import JSONEncoder
 from forms import AddProductForm
+from products.models import Product
 
 
 @login_required(login_url='/')
@@ -40,3 +41,14 @@ def add(request):
             return HttpResponse(data, content_type="application/json")
 
     return render_to_response('products/add-product.html', context)
+
+def search(request):
+    context = {}
+    context.update(csrf(request))
+    if request.method == 'POST':
+        query = request.POST.get('query')
+        books = Product.objects.filter(title__icontains=query)
+        context['books'] = books
+        return render_to_response('search-result.html', context)
+    return render_to_response('search.html', context)
+

@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <h3>Search your Books</h3>
+    <form id="search-box">{% csrf_token %}
+        <input type="text" name="query"/>
+        <button id="search-button">Search</button>
+    </form>
+    <div id="search-result" class="search-result"></div>
+{% endblock %}

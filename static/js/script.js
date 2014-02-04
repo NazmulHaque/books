@@ -40,6 +40,11 @@ $(function () {
         submitPostAdForm();
     });
 
+    $("#search-button").click(function (e) {
+        e.preventDefault();
+        submitSearch();
+    });
+
 });
 
 
@@ -313,3 +318,22 @@ postAdSuccess = function (response) {
         }
     }
 };
+
+submitSearch = function (){
+    console.log("Searching your query...");
+    var data = $('#search-box').serializeArray();
+    console.log(data);
+
+    $.ajax({
+        url: "/search/",
+        type: 'POST',
+        data: data,
+        success: searchResult,
+        error: commonErrorMessage
+    });
+};
+
+searchResult = function(response){
+    $("#search-result").html(response);
+};
+

@@ -403,6 +403,10 @@ login-form .form-error {
 
 .user-ads-view ul li:nth-of-type(2) {
     width: 230px;
+    text-align: left;
+}
+.user-ads-view ul:first-of-type li:nth-of-type(2) {
+    text-align: center;
 }
 .user-ads-view ul li:last-of-type {
     width: 90px;
@@ -417,4 +421,58 @@ login-form .form-error {
 }
 .user-ads-view ul:first-of-type {
     background-color: #6495ED;
+}
+
+.search-result {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.search-result ul{
+    list-style-type: none;
+}
+
+.search-result ul li {
+    display: inline-block;
+    width: 100%;
+}
+
+.search-result ul li:nth-of-type(odd) {
+    background-color: #C0C0C0;
+}
+
+.search-result ul li:nth-of-type(even) {
+    background-color: #F5F5F5;
+}
+
+.book-thumbnail, .book-title, .book-price {
+    float: left;
+}
+
+.book-thumbnail {
+    width: 25%;
+}
+
+.book-thumbnail img {
+    width: 150px;
+    border: 2px solid #DCDCDC;
+}
+
+.book-title {
+    width: 65%;
+    margin: 20px 0;
+}
+
+.book-title .title {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.book-title .post-info {
+    margin: 10px 0;
+}
+.book-price {
+    width: 10%;
+    margin: 20px 0;
 }

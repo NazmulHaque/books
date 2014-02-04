@@ -1,0 +1,36 @@
+{% if books %}
+    <h4>All Search Results</h4>
+    <ul>
+        {% for book in books %}
+            <li>
+                <div>
+                    <div class="book-thumbnail">
+                        <div>
+                            {% if book.thumbnail %}
+                                <img src="/{{ book.thumbnail }}" alt="book photo"/>
+                            {% else %}
+                                <img src="/static/img/product_photos/default.png" alt="book photo"/>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="book-title">
+                        <div class="title">
+                            {{ book.title }}
+                        </div>
+                        <div class="post-info">
+                            <span>Posted on {{ book.created_at|date:"d M Y" }} by {{ book.user.userprofile.fullname }}</span>
+
+                        </div>
+                    </div>
+                    <div class="book-price">
+                        <span>{{ book.money_type }} {{ book.price }}</span>
+
+                    </div>
+
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    No result found
+{% endif %}
