@@ -47,8 +47,12 @@ def search(request):
     context.update(csrf(request))
     if request.method == 'POST':
         query = request.POST.get('query')
-        books = Product.objects.filter(title__icontains=query)
-        context['books'] = books
+        products = Product.objects.filter(title__icontains=query)
+        context['products'] = products
         return render_to_response('search-result.html', context)
     return render_to_response('search.html', context)
-
+def product_view(request, product_id):
+    context = {}
+    product = Product.objects.get(pk=product_id)
+    context['product'] = product
+    return render_to_response("products/product-view.html", context)

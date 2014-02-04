@@ -1,29 +1,29 @@
-{% if books %}
+{% if products %}
     <h4>All Search Results</h4>
     <ul>
-        {% for book in books %}
+        {% for product in products %}
             <li>
                 <div>
-                    <div class="book-thumbnail">
+                    <div class="product-thumbnail">
                         <div>
-                            {% if book.thumbnail %}
-                                <img src="/{{ book.thumbnail }}" alt="book photo"/>
+                            {% if product.thumbnail %}
+                                <img src="/{{ product.thumbnail }}" alt="product photo"/>
                             {% else %}
-                                <img src="/static/img/product_photos/default.png" alt="book photo"/>
+                                <img src="/static/img/product_photos/default.png" alt="product photo"/>
                             {% endif %}
                         </div>
                     </div>
-                    <div class="book-title">
+                    <div class="product-title">
                         <div class="title">
-                            {{ book.title }}
+                            {{ product.title|capfirst }}
                         </div>
                         <div class="post-info">
-                            <span>Posted on {{ book.created_at|date:"d M Y" }} by {{ book.user.userprofile.fullname }}</span>
+                            <span>Posted on {{ product.created_at|date:"d M Y" }} by {{ product.user.userprofile.fullname }}</span>
 
                         </div>
                     </div>
-                    <div class="book-price">
-                        <span>{{ book.money_type }} {{ book.price }}</span>
+                    <div class="product-price">
+                        <span>{{ product.money_type }} {{ product.price }}</span>
 
                     </div>
 

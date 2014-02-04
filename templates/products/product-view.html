@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="product-view-left">
+        <h2>{{ product.title|capfirst }}</h2>
+
+        <div class="product-photo">
+            {% if product.thumbnail %}
+                <img src="/{{ product.thumbnail }}" alt="product photo"/>
+            {% else %}
+                <img src="/static/img/product_photos/default.png" alt="product photo"/>
+            {% endif %}
+        </div>
+        <div>
+            <h3>About this book</h3>
+            <div class="product-description">
+                {{ product.description }}
+            </div>
+        </div>
+    </div>
+    <div class="product-view-right">
+        <div>
+            Category: {{ product.category }}
+        </div>
+    </div>
+
+{% endblock %}

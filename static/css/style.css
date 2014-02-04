@@ -65,16 +65,16 @@ body {
     height: 30px;
 }
 
-.content {
+body .content {
     width: 80%;
     padding: 0;
     margin: 0 auto;
+    background-color: #ffffff;
 }
 
 .home-message {
     width: 60%;
     float: left;
-    background-color: #ffffff;
     margin: 20px 0;
 }
 
@@ -89,7 +89,6 @@ body {
     margin-top: 20px;
     float: right;
     width: 32%;
-    background-color: #ffffff;
     text-align: center;
     padding: 0 0 35px 0;
 }
@@ -165,7 +164,6 @@ body {
 
 .user-settings {
     display: none;
-    background-color: #ffffff;
 }
 
 .user-settings ul {
@@ -284,7 +282,6 @@ login-form .form-error {
 
 .left-sidebar ul li {
     width: 70%;
-    background-color: #ffffff;
     padding: 10px 0 10px 10px;
     border-bottom: 2px solid #DCDCDC;
     text-align: left;
@@ -416,9 +413,7 @@ login-form .form-error {
     background-color: #C0C0C0;
 }
 
-.user-ads-view ul:nth-of-type(odd) {
-    background-color: #ffffff;
-}
+
 .user-ads-view ul:first-of-type {
     background-color: #6495ED;
 }
@@ -445,34 +440,60 @@ login-form .form-error {
     background-color: #F5F5F5;
 }
 
-.book-thumbnail, .book-title, .book-price {
+.product-thumbnail, .product-title, .product-price {
     float: left;
 }
 
-.book-thumbnail {
+.product-thumbnail {
     width: 25%;
 }
 
-.book-thumbnail img {
+.product-thumbnail img {
     width: 150px;
     border: 2px solid #DCDCDC;
 }
 
-.book-title {
+.product-title {
     width: 65%;
     margin: 20px 0;
 }
 
-.book-title .title {
+.product-title .title {
     font-size: 20px;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
-.book-title .post-info {
+.product-title .post-info {
     margin: 10px 0;
 }
-.book-price {
+.product-price {
     width: 10%;
     margin: 20px 0;
+}
+
+.product-view-left, .product-view-right {
+    float: left;
+}
+
+.product-view-left {
+    width: 70%;
+}
+
+.product-view-right {
+    width: 30%;
+}
+
+.product-view-left .product-photo {
+    margin: 10px 0;
+    border: 2px solid #000000;
+    text-align: center;
+}
+.product-description {
+    border-radius: 5px;
+    width: 97%;
+    min-height: 50px;
+    padding: 10px;
+}
+.product-view-left .product-photo img {
+    width: 400px;
 }
