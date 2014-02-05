@@ -1,13 +1,27 @@
-var count = 0
 $(function () {
-    $('#user-name').click(function () {
-        if (count == 0) {
-            $('.user-settings').show();
-            count = 1;
-        } else {
-            $('.user-settings').hide();
-            count = 0;
-        }
+    $('#user-name').click(function (e) {
+        e.stopPropagation();
+        $('#user-menu').show();
+        $(document).click(function (e) {
+            if (e.target.id != "user-menu" && !$(e.target).is('li')) {
+                $('#user-menu').hide();
+                $(document).unbind('click');
+            }
+        });
+    });
+
+    $('#signup-switch-button').click(function (e) {
+        console.log('clicking...')
+        e.preventDefault();
+        $('.login-form-view').hide();
+        $('.signup-form-view').show();
+    });
+
+    $('#login-switch-button').click(function (e) {
+        e.preventDefault();
+        $('.signup-form-view').hide();
+        $('#signup-form .form-error').html('');
+        $('.login-form-view').show();
     });
 
     $('#login-button').click(function (e) {
@@ -35,7 +49,7 @@ $(function () {
         $("#post-ad-button").removeAttr("disabled", "disabled");
     });
 
-    $("#post-ad-button").click(function (e) {
+    $("#submit-ad-button").click(function (e) {
         e.preventDefault();
         submitPostAdForm();
     });
@@ -82,10 +96,9 @@ submitLoginForm = function () {
         url: '/login/',
         type: 'POST',
         data: data,
-
-        beforeSend: function () {
-            if (checkLoginEmptyFields(data) == false) {
-                return false;
+        beforeSend: function(){
+            if ($("#login-form input[name='username']").val() == '' || $("#login-form input[name='password']").val() == ''){
+                return false
             }
         },
         success: loginAuthentication,
@@ -98,31 +111,12 @@ commonErrorMessage = function () {
     console.log("Something went Wrong...")
 };
 
-checkLoginEmptyFields = function (data) {
-    var loginFormInputs = $("#login-form input");
-    loginFormInputs.removeClass('empty-input');
-
-    if (data[1].value == '' || data[2].value == '') {
-        $('#login-error').html('');
-
-        if (data[1].value == '' && data[2].value == '') {
-            loginFormInputs.addClass('empty-input');
-        } else if (data[1].value == '') {
-            $("#login-form input[name='username']").addClass('empty-input');
-        } else if (data[2].value == "") {
-            $("#login-form input[name='password']").addClass('empty-input');
-        }
-        return false;
-    } else {
-        return true;
-    }
-};
-
 loginAuthentication = function (response) {
     if (response.login == true) {
         window.location = '/user/' + response.username;
     } else {
         $('#login-error').html(response.errors);
+        $('#login-error').show();
     }
 };
 
@@ -141,7 +135,9 @@ submitSignupForm = function () {
 
 signupSuccess = function (response) {
     if (response == 'true') {
-        window.location = '/thanks';
+        $('#signup-success-message').html("Thanks for registration. Log in to explore your book.")
+        $('.signup-form-view').hide();
+        $('.login-form-view').show();
     } else {
         $("#signup-form .form-error").html('');
         for (error in response) {
@@ -319,13 +315,13 @@ postAdSuccess = function (response) {
     }
 };
 
-submitSearch = function (){
+submitSearch = function () {
     console.log("Searching your query...");
-    var data = $('#search-box').serializeArray();
+    var data = $('#search-form').serializeArray();
     console.log(data);
 
     $.ajax({
-        url: "/search/",
+        url: "/search-result/",
         type: 'POST',
         data: data,
         success: searchResult,
@@ -333,7 +329,82 @@ submitSearch = function (){
     });
 };
 
-searchResult = function(response){
+searchResult = function (response) {
+    $('#search-result-view').show();
+    $('#recent-posts-view').hide();
     $("#search-result").html(response);
+    var totalPage = $("#search-result input[name='total']").val();
+    console.log(totalPage);
+
+    if (totalPage > 2) {
+        var paginator = $('#search-result-view #paginator').pagination({
+            items: totalPage,
+            itemsOnPage: 2,
+            hrefTextPrefix: '#',
+            cssStyle: 'light-theme',
+            onPageClick: customSearchPagination
+        });
+    } else {
+        $('#search-result-view #paginator').pagination('destroy');
+    }
+
 };
 
+customSearchPagination = function () {
+    var page = $('#search-result-view #paginator').pagination('getCurrentPage');
+    var data = {
+        query: $("#search-form input[name='query']").val(),
+        page: page,
+        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+    };
+    console.log(data);
+
+    $.ajax({
+        url: '/search-result/',
+        type: 'POST',
+        data: data,
+
+        success: customSearchPaginationResult
+    });
+};
+
+customSearchPaginationResult = function (response) {
+    $("#search-result").html(response);
+
+};
+
+$(function () {
+    var totalPage = $("#recent-posts input[name='total']").val();
+    console.log(totalPage);
+    if (totalPage > 2) {
+        $('#recent-posts-view #paginator').pagination({
+            items: totalPage,
+            itemsOnPage: 2,
+            hrefTextPrefix: '#',
+            cssStyle: 'light-theme',
+            onPageClick: recentSearchPagination
+        });
+    }
+});
+
+recentSearchPagination = function () {
+    var page = $('#recent-posts-view #paginator').pagination('getCurrentPage');
+    var data = {
+        page: page,
+        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+    };
+    console.log(data);
+
+    $.ajax({
+        url: '/recent-search/',
+        type: 'POST',
+        data: data,
+
+        success: recentSearchPaginationResult
+    });
+
+};
+
+recentSearchPaginationResult = function (response) {
+    $('#recent-posts').html(response);
+};

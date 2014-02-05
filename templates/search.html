@@ -1,9 +1,69 @@
 {% extends 'base/base.html' %}
-{% block content %}
-    <h3>Search your Books</h3>
-    <form id="search-box">{% csrf_token %}
-        <input type="text" name="query"/>
-        <button id="search-button">Search</button>
-    </form>
-    <div id="search-result" class="search-result"></div>
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/css/simplePagination.css"/>
 {% endblock %}
+
+{% block content %}
+    <div id="search-box">
+        {% include "search-box.html" %}
+    </div>
+    <div id="search-result-view" class="search-result-view">
+        <div id="search-result" class="search-result"></div>
+        <div id="paginator" class="paginator"></div>
+    </div>
+    <div id="recent-posts-view" class="recent-posts-view">
+        <div id="recent-posts" class="search-result">
+            {% if products %}
+                <h4>Recent Posts</h4>
+                <input type="hidden" name="total" value="{{ total_products }}"/>
+                <ul>
+                    {% for product in products %}
+                        <li>
+                            <div>
+                                <div class="product-thumbnail">
+                                    <div>
+                                        {% if product.thumbnail %}
+                                            <img src="/{{ product.thumbnail }}" alt="product photo"/>
+                                        {% else %}
+                                            <img src="/static/img/product_photos/default.png" alt="product photo"/>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="product-title">
+                                    <a href="/product/{{ product.id }}" target="_blank">
+                                        <div class="title">
+                                            {{ product.title|capfirst }}
+                                        </div>
+                                    </a>
+
+                                    <div class="post-info">
+                                        <span>Posted on {{ product.created_at|date:"d M Y" }} by {{ product.user.userprofile.fullname }}</span>
+
+                                    </div>
+                                </div>
+                                <div class="product-price">
+                                    <span>{{ product.money_type }} {{ product.price }}</span>
+
+                                </div>
+
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                No result found
+            {% endif %}
+        </div>
+        <div id="paginator" class="paginator"></div>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script type="text/javascript" src="/static/js/jquery.simplePagination.js"></script>
+{% endblock %}
+

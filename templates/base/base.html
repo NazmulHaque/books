@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>
         {% block title %}
@@ -7,29 +8,38 @@
     </title>
 
     {% block css %}
+        <link rel="stylesheet" href="/static/css/bootstrap.css"/>
         <link rel="stylesheet" href="/static/css/style.css"/>
-        <link rel='shortcut icon' type='image/x-icon' href='/static/img/favicon.png' />
-    {% endblock %}
-
-    {% block js %}
-        <script type="text/javascript" src="/static/js/jquery-2.0.0.min.js"></script>
-        <script type="text/javascript" src="/static/js/script.js"></script>
-
+        <link rel='shortcut icon' type='image/x-icon' href='/static/img/favicon.png'/>
     {% endblock %}
 
     {% block meta %}{% endblock %}
 </head>
 
 <body>
-{% block header %}
-    {% include "partial/header.html" %}
-{% endblock %}
-<div class="content">
-    {% block content %}{% endblock %}
+
+<div id="page" class="page">
+    <div class="nav-bar">
+        {% block header %}
+            {% include "partial/header.html" %}
+        {% endblock %}
+        <div class="clear"></div>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+        <div class="clear"></div>
+    </div>
+
+    <div class="footer">
+        {% block footer %}
+            <p>This site is designed & coded by <strong>@Namzul</strong></p>
+        {% endblock %}
+    </div>
 </div>
-{% block footer %}
-    {% include "partial/footer.html" %}
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/script.js"></script>
 {% endblock %}
 </body>
-
 </html>

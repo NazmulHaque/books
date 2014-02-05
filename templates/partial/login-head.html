@@ -1,22 +1,13 @@
-<div class="profile">
-    <div id="user-name">
-        <span>{{ user.userprofile.fullname }}</span>
-        {% if user.userprofile.profile_photo %}
-            <img src="/{{ user.userprofile.profile_photo }}" alt="Profile Photo"/>
-        {% else %}
-            <img src="{{ STATIC_URL }}/static/img/profile_photos/default.png" alt="Profile Photo"/>
-        {% endif %}
-    </div>
-    <div class="user-settings">
-        <ul>
-            {% if user_admin %}
-                <li>
-                    <a href="/admin/" target="_blank">Admin Panel</a>
-                </li>
-            {% endif %}
+<div class="profile-menu">
+    <div class="btn-group">
+        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+            {{ user.userprofile.fullname }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
             <li>
                 <a href="/user/edit-profile">Edit Profile</a>
             </li>
+            <li class="divider"></li>
             <li>
                 <a href="/logout">Logout</a>
             </li>

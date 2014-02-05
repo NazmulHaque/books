@@ -14,52 +14,31 @@ from utils import JSONEncoder
 from userprofile.models import UserProfile
 from products.models import Product
 
+
 def home(request):
     #import pdb;pdb.set_trace()
     if request.user.is_authenticated():
         return redirect('/user/%s' % request.user.username)
-
-    context = {}
-    context.update(csrf(request))
-    signup_form = RegistrationForm()
-    context['signup_form'] = signup_form
-
-    return render_to_response('home.html', context)
+    else:
+        return render_to_response('home.html')
 
 
 def signup(request):
-    if request.user.is_authenticated():
-        return redirect('/user/%s' % request.user.username)
-    else:
-        if request.method == 'POST':
-            form = RegistrationForm(data=request.POST)
-            if form.is_valid():
-                form.save()
-                return HttpResponse('true')
-            else:
-                errors_dict = {}
-                if form.errors:
-                    for error in form.errors:
-                        e = form.errors[error]
-                        errors_dict[error] = unicode(e)
-                data = json.dumps(errors_dict, cls=JSONEncoder)
-                return HttpResponse(data, content_type="application/json")
-
-
-def signup_success(request):
-    if request.user.is_authenticated():
-        return redirect('/user/%s' % request.user.username)
-    else:
-        return render_to_response('user/thanks.html')
-
+    if request.method == 'POST':
+        form = RegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('true')
+        else:
+            errors_dict = {}
+            if form.errors:
+                for error in form.errors:
+                    e = form.errors[error]
+                    errors_dict[error] = unicode(e)
+            data = json.dumps(errors_dict, cls=JSONEncoder)
+            return HttpResponse(data, content_type="application/json")
 
 def login(request):
-    """
-    Displays the login form and handles the login action.
-    """
-    if request.user.is_authenticated():
-        return redirect('/user/%s' % request.user.username)
-
     if request.method == "POST":
         form = LoginForm(data=request.POST)
 
@@ -71,7 +50,6 @@ def login(request):
 
                 data = json.dumps(dict, cls=JSONEncoder)
                 return HttpResponse(data, content_type="application/json")
-
             else:
                 dict = {'login': False, 'errors': "Please enter a correct email and password."}
                 data = json.dumps(dict, cls=JSONEncoder)
@@ -83,7 +61,7 @@ def login(request):
             return HttpResponse(data, content_type="application/json")
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login-view')
 def index(request, user_name):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -104,7 +82,14 @@ def index(request, user_name):
             return redirect('/user/%s' % request.user.username)
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login-view')
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+def login_view(request):
+    context = {}
+    context.update(csrf(request))
+
+    return render_to_response('user/login-view.html', context)

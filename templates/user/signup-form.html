@@ -1,45 +1,49 @@
-<h3>Sign Up</h3>
-<form id="signup-form" class="signup-form">{% csrf_token %}
-    <ul>
-        <li>
+<div>
+    <h3>Sign Up</h3>
+
+    <form id="signup-form" role="form">{% csrf_token %}
+        <div id="login-error" class="form-error"></div>
+        <div class="form-group">
             <div>
-                <div class="label">Email <span class="required">*</span></div>
-                <div>
-                    <input type="email" name="email"/>
-                </div>
-                <div id="error-email" class="form-error"></div>
+                <label for="exampleInputEmail1">Email <span class="required">*</span></label>
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                       placeholder="Enter Email">
             </div>
-        </li>
-        <li>
+            <div id="error-email" class="form-error"></div>
+
+        </div>
+        <div class="form-group">
             <div>
-                <div class="label">Username <span class="required">*</span></div>
-                <div>
-                    <input type="text" name="username"/>
-                </div>
-                <div id="error-username" class="form-error"></div>
+                <label for="exampleInputPassword1">Choose Username <span class="required">*</span></label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="username"
+                       placeholder="Choose Username">
             </div>
-        </li>
-        <li>
+            <div id="error-username" class="form-error"></div>
+
+        </div>
+        <div class="form-group">
             <div>
-                <div class="label">Password <span class="required">*</span></div>
-                <div>
-                    <input type="password" name="password1"/>
-                </div>
-                <div id="error-password1" class="form-error"></div>
+                <label for="exampleInputPassword1">Choose PAssword <span class="required">*</span></label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password1"
+                       placeholder="Choose Password">
             </div>
-        </li>
-        <li>
+            <div id="error-password1" class="form-error"></div>
+
+        </div>
+        <div class="form-group">
             <div>
-                <div class="label">Confirm Password <span class="required">*</span></div>
-                <div>
-                    <input type="password" name="password2"/>
-                </div>
-                <div id="error-password2" class="form-error"></div>
+                <label for="exampleInputPassword1">Confirm Password <span class="required">*</span></label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password2"
+                       placeholder="Confirm Password">
             </div>
-        </li>
-        <li class="signup-button">
-            <a id="signup-button" href="">Sign Up</a>
-        </li>
-    </ul>
-</form>
+            <div id="error-password2" class="form-error"></div>
+
+        </div>
+        <button id="signup-button" type="button" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+    </form>
+</div>
+<div class="switch-form">
+    <span>Already have an account? </span>
+    <span id="login-switch-button"><a href="">Log In</a> Now</span>
+</div>
 

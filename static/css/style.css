@@ -2,72 +2,51 @@ body {
     padding: 0;
     margin: 0;
     display: block;
-    background-color: #FAF0E6;
+
 }
 
 .clear {
     clear: both;
 }
 
-.header {
+.page {
+    margin: 0 auto;
+    padding: 0;
+    background-color: #FAF0E6;
+}
+.nav-bar {
     width: 100%;
-    height: 50px;
-    background-color: #66CCCC;
+    height: 55px;
+    background-color: #f7f7f9;
     border-top: 5px solid #CCFFFF;
-    border-bottom: 3px solid #4B0082;
+    border-bottom: 1px solid #e1e1e8;
+    margin-bottom: 20px;
 }
 
-.logo, .search-link {
+.nav-content {
+    width: 75%;
+    margin: 0 auto;
+}
+.logo {
     width: 25%;
     float: left;
 }
 
-.logo a {
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.logo img {
-    height: 30px;
-    padding: 10px;
-    margin-left: 20px;
-    vertical-align: middle;
-}
-
-.logo-text {
-    font-size: 20px;
-    text-transform: uppercase;
-}
-
-.search-link {
+.nav-mid {
     width: 30%;
-    margin: 15px 0;
+    float: left;
 }
 
-.search-link a {
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #0000FF;
-    padding: 5px 20px 5px 20px;
-    border-radius: 3px;
-}
-
-.search-link a.post-ad-button {
-    background-color: #000000;
-    margin-left: 10px;
-}
-
-.header-right {
+.nav-right {
     float: right;
-    margin: 7px 25px 10px 0;
     width: 30%;
     text-align: right;
-    height: 30px;
 }
 
-body .content {
-    width: 80%;
-    padding: 0;
+
+.content {
+    width: 74%;
+    padding: 10px;
     margin: 0 auto;
     background-color: #ffffff;
 }
@@ -93,47 +72,6 @@ body .content {
     padding: 0 0 35px 0;
 }
 
-.signup-form {
-    margin: 0 auto;
-    width: 80%;
-}
-
-.signup-form ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.firstname, .lastname {
-    float: left;
-}
-
-.label {
-    font-size: 14px;
-}
-
-.signup-form input {
-    width: 280px;
-    height: 25px;
-    font-size: 14px;
-}
-
-.signup-form li {
-    margin: 0;
-    padding: 0;
-    height: 70px;
-    text-align: left;
-}
-
-.firstname input {
-    width: 142px;
-    margin-right: 10px;
-}
-
-.lastname input {
-    width: 120px;
-}
-
 .sidebar h3 {
     text-align: center;
     font-size: 30px;
@@ -141,71 +79,18 @@ body .content {
     margin: 10px 0;
 }
 
-.profile {
-    float: right;
+.profile-menu {
+    /*float: right;*/
     padding: 0 0 0 5px;
     font-size: 18px;
 }
 
-.header-right a {
-    text-decoration: none;
-    color: #ffffff;
+.profile-menu button {
+    min-width: 160px;
 }
 
-#user-name {
-    cursor: pointer;
-}
-
-#user-name img {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-}
-
-.user-settings {
-    display: none;
-}
-
-.user-settings ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.user-settings ul li {
-    text-align: center;
-}
-
-.user-settings ul li a {
-    color: #000000;
-    font-size: 14px;
-    text-decoration: underline;
-}
-
-.login-inputs, .login-button {
-    float: left;
-}
-
-.login-inputs {
-    width: 80%;
-    margin-right: 5px;
-}
-
-.login-button {
-    margin: 3px 0;
-}
-
-.login-form input {
-    height: 20px;
-    width: 150px;
-    font-size: 12px;
-}
-
-.login-button a {
-    padding: 2px 8px 2px 8px;
-    font-size: 13px;
-    background-color: #008000;
-    border: 3px solid #2F4F4F;
+.profile-menu ul li {
+    text-align: left;
 }
 
 .form-error {
@@ -214,25 +99,9 @@ body .content {
     text-align: left;
 }
 
-login-form .form-error {
-    margin-left: 30px;
-}
-
-.empty-input {
-    border: 2px solid #ff0000;
-}
-
-.signup-form li.signup-button {
-    height: auto;
-    margin: 20px 0;
-}
-
-.signup-button a {
-    text-decoration: none;
-    padding: 10px 110px 10px 110px;
-    color: #ffffff;
-    font-size: 20px;
-    background-color: #191970;
+.switch-form {
+    text-align: center;
+    margin: 10px 0;
 }
 
 .required {
@@ -413,9 +282,17 @@ login-form .form-error {
     background-color: #C0C0C0;
 }
 
+.user-ads-view ul:nth-of-type(odd) {
+    background-color: #F5F5F5;
+}
+
 
 .user-ads-view ul:first-of-type {
     background-color: #6495ED;
+}
+
+.search-result-view {
+    display: none;
 }
 
 .search-result {
@@ -458,6 +335,15 @@ login-form .form-error {
     margin: 20px 0;
 }
 
+.product-title a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.product-title a:hover {
+    text-decoration: underline;
+}
+
 .product-title .title {
     font-size: 20px;
     font-weight: bold;
@@ -497,3 +383,55 @@ login-form .form-error {
 .product-view-left .product-photo img {
     width: 400px;
 }
+
+.login-view-left-side, .login-view-right-side {
+    float: left;
+    margin: 0 auto;
+}
+
+.login-view-left-side {
+    width: 50%;
+}
+
+.login-view-right-side {
+    width: 30%;
+}
+
+.login-view-right-side h3 {
+    text-align: center;
+}
+
+.signup-form-view {
+    display: none;
+}
+
+.recent-posts-view .paginator,
+.search-result-view .paginator{
+    float: right;
+    margin: 0 97px 0;
+}
+
+.alert-danger {
+    display: none;
+}
+.navbar-form {
+    width: 100%;
+}
+
+.navbar-form div {
+    float: left;
+    margin-right: 10px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+
+.navbar-nav.navbar-right li {
+    margin-right: 10px;
+}
+

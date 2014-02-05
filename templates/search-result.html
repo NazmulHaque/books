@@ -1,5 +1,6 @@
 {% if products %}
     <h4>All Search Results</h4>
+    <input type="hidden" name="total" value="{{ total_products }}"/>
     <ul>
         {% for product in products %}
             <li>
@@ -14,9 +15,12 @@
                         </div>
                     </div>
                     <div class="product-title">
-                        <div class="title">
-                            {{ product.title|capfirst }}
-                        </div>
+                        <a href="/product/{{ product.id }}" target="_blank">
+                            <div class="title">
+                                {{ product.title|capfirst }}
+                            </div>
+                        </a>
+
                         <div class="post-info">
                             <span>Posted on {{ product.created_at|date:"d M Y" }} by {{ product.user.userprofile.fullname }}</span>
 

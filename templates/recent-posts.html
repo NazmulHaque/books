@@ -1,0 +1,39 @@
+{% if products %}
+        <h4>Recent Posts</h4>
+        <ul>
+            {% for product in products %}
+                <li>
+                    <div>
+                        <div class="product-thumbnail">
+                            <div>
+                                {% if product.thumbnail %}
+                                    <img src="/{{ product.thumbnail }}" alt="product photo"/>
+                                {% else %}
+                                    <img src="/static/img/product_photos/default.png" alt="product photo"/>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="product-title">
+                            <a href="/product/{{ product.id }}" target="_blank">
+                                <div class="title">
+                                    {{ product.title|capfirst }}
+                                </div>
+                            </a>
+
+                            <div class="post-info">
+                                <span>Posted on {{ product.created_at|date:"d M Y" }} by {{ product.user.userprofile.fullname }}</span>
+
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span>{{ product.money_type }} {{ product.price }}</span>
+
+                        </div>
+
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        No result found
+    {% endif %}

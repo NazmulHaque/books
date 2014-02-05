@@ -13,7 +13,7 @@ from books.utils import JSONEncoder
 from userprofile.models import UserProfile
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login-view')
 def user_profile(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -29,7 +29,7 @@ def user_profile(request):
         return render_to_response('user/edit-profile.html', context)
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login-view')
 def update_profile_photo(request):
     context = {}
     context.update(csrf(request))
@@ -51,7 +51,7 @@ def update_profile_photo(request):
     return render_to_response('user-profile/profile-photo-form.html', context)
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login-view')
 def update_basic_info(request):
     context = {}
     context.update(csrf(request))
@@ -78,7 +78,7 @@ def update_basic_info(request):
     return render_to_response('user-profile/basic-info-form.html', context)
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login-view')
 def change_password(request):
     context = {}
     context.update(csrf(request))
@@ -104,7 +104,7 @@ def change_password(request):
     return render_to_response('user-profile/change-password-form.html', context)
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login-view')
 def update_basic_info_first_time(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)

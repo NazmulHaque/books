@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="login-view-left-side">
+        Left column
+    </div>
+    <div class="login-view-right-side">
+        <div class="login-form-view">
+            {% include "user/login-form.html" %}
+        </div>
+        <div class="signup-form-view">
+            {% include "user/signup-form.html" %}
+        </div>
+    </div>
+{% endblock %}

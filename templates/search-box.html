@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form id="search-form" class="navbar-form navbar-left" role="search">{% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" name="query">
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            Division <span class="caret"></span>
+                        </button>
+                        {#                        <a href="#" class=" btn btn-info dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Any</a></li>
+                            <li><a href="#">Dhaka</a></li>
+                            <li><a href="#">Chittagong</a></li>
+                            <li><a href="#">Comilla</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            Condition <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">All</a></li>
+                            <li><a href="#">New</a></li>
+                            <li><a href="#">Used</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <button id="search-button" type="submit" class="btn btn-default">Submit</button>
+            </div>
+
+        </form>
+    <!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

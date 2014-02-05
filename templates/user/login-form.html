@@ -1,16 +1,24 @@
 <div>
-    <form id="login-form" class="login-form">{% csrf_token %}
-        <div>
-            <div class="login-inputs">
-                <div>
-                    <input type="text" name="username" placeholder="Username"/>
-                    <input type="password" name="password" placeholder="Password"/>
-                </div>
-                <div id="login-error" class="form-error"></div>
-            </div>
-            <div class="login-button">
-                <a id="login-button" href="">Login</a>
-            </div>
+    <div id="signup-success-message"></div>
+    <h3>Lon In</h3>
+
+    <form id="login-form" role="form">{% csrf_token %}
+        <div id="login-error" class="alert alert-danger"></div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="username"
+                   placeholder="Enter Username">
         </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                   placeholder="Password">
+        </div>
+        <button id="login-button" type="button" class="btn btn-primary btn-lg btn-block">Log In</button>
     </form>
+</div>
+
+<div class="switch-form">
+    <span>Don't have an account? </span>
+    <span id="signup-switch-button"><a href="">Sign Up</a> Now</span>
 </div>

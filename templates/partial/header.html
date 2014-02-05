@@ -1,24 +1,19 @@
-<div class="header">
+<div class="nav-content">
     <div class="logo">
-        <a href="/">
-            <img src="/static/img/logo.jpeg" alt="logo"/>
-            <span class="logo-text">books.com</span>
-        </a>
+        <a class="btn btn-link btn-lg" role="button" href="/">Home</a>
     </div>
 
 
-    <div class="search-link">
-        <a id="search-product-button" href="/search">Search Books</a>
-        <a id="add-product-button" class="post-ad-button" href="/product/add">Post Ad</a>
+    <div class="nav-mid">
+        <a class="btn btn-link btn-lg" role="button" href="/search/all">Search Books</a>
+        <a class="btn btn-link btn-lg" role="button" href="/product/add">Post Ad</a>
     </div>
 
-    <div id="header-right" class="header-right">
+    <div class="nav-right">
         {% if login_mode %}
             {% include "partial/login-head.html" %}
         {% else %}
-            {% include "user/login-form.html" %}
+            <a class="btn btn-link btn-lg" role="button" href="/login-view">Log In</a>
         {% endif %}
-
     </div>
 </div>
-<div class="clear"></div>

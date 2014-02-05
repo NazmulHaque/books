@@ -9,12 +9,13 @@ urlpatterns = patterns('',
     url(r'^user/', include('userprofile.urls')),
     url(r'^product/', include('products.urls')),
     url(r'^$', 'books.views.home'),
+    url(r'^login-view/$', 'books.views.login_view'),
     url(r'^login/$', 'books.views.login'),
     url(r'^logout/$', 'books.views.logout'),
     url(r'^signup/$', 'books.views.signup'),
-    url(r'^thanks/$', 'books.views.signup_success'),
-    url(r'^search/$', 'products.views.search'),
-
+    url(r'^search/all$', 'products.views.search'),
+    url(r'^search-result/$', 'products.views.search_result'),
+    url(r'^recent-search/$', 'products.views.recent_search'),
 
     # url(r'^books/', include('books.foo.urls')),
 
