@@ -11,9 +11,10 @@ $(function () {
     });
 
     $('#signup-switch-button').click(function (e) {
-        console.log('clicking...')
+        console.log('clicking...');
         e.preventDefault();
         $('.login-form-view').hide();
+        $('#login-error').hide();
         $('.signup-form-view').show();
     });
 

@@ -16,7 +16,7 @@
     <div id="recent-posts-view" class="recent-posts-view">
         <div id="recent-posts" class="search-result">
             {% if products %}
-                <h4>Recent Posts</h4>
+                <h4>All Posts ({{ total_products }})</h4>
                 <input type="hidden" name="total" value="{{ total_products }}"/>
                 <ul>
                     {% for product in products %}

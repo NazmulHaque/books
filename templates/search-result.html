@@ -1,5 +1,5 @@
 {% if products %}
-    <h4>All Search Results</h4>
+    <h4>All Search Results ({{ total_products }})</h4>
     <input type="hidden" name="total" value="{{ total_products }}"/>
     <ul>
         {% for product in products %}

@@ -4,24 +4,26 @@
     {% if products %}
         <div class="user-ads-view">
             <h3>Your posts</h3>
-            <ul>
-                <li>Title</li>
-                <li>Description</li>
-                <li>Category</li>
-                <li>Language</li>
-                <li>Created At</li>
-                <li>Price</li>
-            </ul>
-            {% for product in products %}
-                <ul>
-                    <li>{{ product.title }}</li>
-                    <li>{{ product.description }}</li>
-                    <li>{{ product.category }}</li>
-                    <li>{{ product.language }}</li>
-                    <li>{{ product.created_at|date:"d M Y" }}</li>
-                    <li>{{ product.money_type }} {{ product.price }}</li>
-                </ul>
-            {% endfor %}
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Language</th>
+                    <th>Created At</th>
+                    <th>Price</th>
+                </tr>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.description|linebreaks|truncatewords:6 }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.language }}</td>
+                        <td>{{ product.created_at|date:"d M Y" }}</td>
+                        <td>{{ product.money_type }} {{ product.price }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     {% else %}
         <h3>You have no Ads</h3>
