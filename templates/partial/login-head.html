@@ -1,5 +1,6 @@
 <div class="profile-menu">
     <div class="btn-group">
+        {% if user.userprofile %}
         <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
             {{ user.userprofile.fullname }} <span class="caret"></span>
         </button>
@@ -12,5 +13,9 @@
                 <a href="/logout">Logout</a>
             </li>
         </ul>
+            <img src="{{ user.userprofile.photo }}" alt="Profile Photo" class="img-circle">
+        {% else %}
+            <a class="btn btn-link btn-lg" role="button" href="/logout">Logout</a>
+        {% endif %}
     </div>
 </div>

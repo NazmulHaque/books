@@ -4,23 +4,39 @@
     {% if products %}
         <div class="user-ads-view">
             <h3>Your posts</h3>
-            <table>
+            <table class="table table-striped">
                 <tr>
                     <th>Title</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Language</th>
-                    <th>Created At</th>
+                    <th>Status</th>
                     <th>Price</th>
+                    <th>Controls</th>
                 </tr>
                 {% for product in products %}
                     <tr>
-                        <td>{{ product.title }}</td>
-                        <td>{{ product.description|linebreaks|truncatewords:6 }}</td>
-                        <td>{{ product.category }}</td>
-                        <td>{{ product.language }}</td>
-                        <td>{{ product.created_at|date:"d M Y" }}</td>
-                        <td>{{ product.money_type }} {{ product.price }}</td>
+                        <td>
+                            <a href="/product/{{ product.id }}" target="_blank">
+                                {{ product.title|truncatewords:6 }}
+                            </a>
+
+                        </td>
+                        <td>
+                            <span {% if product.status == 'Approval' %}
+                                    class="label label-default"
+                                    {% elif product.status == 'Public' %}
+                                    class="label label-success"
+                                    {% elif product.status == 'Sold' %}
+                                    class="label label-info"
+                                    {% endif %}>{{ product.status }}</span>
+                        </td>
+                        <td>Tk {{ product.price }}</td>
+                        <td>
+                            <a href="" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a href="" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>

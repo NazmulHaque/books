@@ -1,58 +1,74 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-    <h3>Update Basic Information</h3>
-    <form id="update-basic-info-first-time-form" class="basic-info-form">{% csrf_token %}
-        <ul>
-            <li>
-                <div>
-                    <div class="label">Full Name <span class="required">*</span></div>
-                    <div>
-                        <input type="text" name="fullname" />
-                    </div>
-                    <div id="error-fullname" class="form-error"></div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <div class="label">Contact Number <span class="required">*</span></div>
-                    <div>
-                        <input type="text" name="contact_number" />
-                    </div>
-                    <div id="error-contact_number" class="form-error"></div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <div class="label">Contact Address</div>
-                    <div>
-                        <textarea name="contact_address"></textarea>
-                    </div>
-                    <div id="error-contact_address" class="form-error"></div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <div class="label">Date of Birth <span class="required">*</span></div>
-                    <div>
-                        <input type="date" name="date_of_birth"/>
-                    </div>
-                    <div id="error-date_of_birth" class="form-error"></div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <div class="label">Gender <span class="required">*</span></div>
-                    <div>
+    <div class="basic-info-first-time-form">
+        <h3>Create Your Profile</h3>
 
-                        <input class="gender" type="radio" name="gender" value="MALE"/><span>Male</span>
-                        <input class="gender" type="radio" name="gender" value="FEMALE"/><span>Female</span>
-
-                    </div>
-                    <div id="error-gender" class="form-error"></div>
+        <form id="update-basic-info-first-time-form" role="form">{% csrf_token %}
+            <div class="form-group">
+                <div>
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="fullname"
+                           placeholder="Enter Your Full Name">
                 </div>
-            </li>
-        </ul>
-    </form>
-    <button id="submit-basic-info-first-time-button" class="info-submit-button" disabled>Update</button>
+                <div id="error-fullname" class="form-error"></div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="presentAddress">Present Address <span class="required">*</span></label>
+                    <div>
+                        <textarea name="address" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div id="error-address" class="form-error"></div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="upozila">Upozila/Police Station <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="upozila"
+                           placeholder="Upozila/Police Station">
+                </div>
+                <div id="error-upozila" class="form-error"></div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="district">District <span class="required">*</span></label>
+                    <select name="district" class="form-control">
+                        <option value="">Select District</option>
+                        {% for district in districts %}
+                            <option value="{{ district }}">{{ district }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="error-district" class="form-error"></div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="contactNumber">Contact Number <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="contact_number"
+                           placeholder="Enter Your Contact Number">
+                </div>
+                <div id="error-contact_number" class="form-error"></div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="gender">Gender <span class="required">*</span></label>
+                    <input type="radio" name="gender" value="Male"/><span>Male</span>
+                    <input type="radio" name="gender" value="Female"/><span>Female</span>
+                </div>
+                <div id="error-gender" class="form-error"></div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="birthday">Date of Birth <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="birthday"
+                           placeholder="Enter Your Birthday">
+                </div>
+                <div id="error-birthday" class="form-error"></div>
+            </div>
+            <button id="submit-basic-info-first-time-button" type="button" class="btn btn-primary btn-lg btn-block"
+                    disabled>Create Your Profile
+            </button>
+        </form>
+    </div>
 {% endblock %}

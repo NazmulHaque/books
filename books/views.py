@@ -12,7 +12,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from forms import RegistrationForm, LoginForm
 from utils import JSONEncoder
 from userprofile.models import UserProfile
-from products.models import Product
+from products.models import Products
 
 
 def home(request):
@@ -75,7 +75,7 @@ def index(request, user_name):
             }
             if request.user.is_superuser:
                 context['user_admin'] = True
-            products = Product.objects.filter(user=request.user)
+            products = Products.objects.filter(user=request.user)
             context['products'] = products
             return render_to_response('user/index.html', context)
         else:

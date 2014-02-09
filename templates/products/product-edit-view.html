@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="left-sidebar">
+        <h4>Edit Your Product</h4>
+        <ul id="profile-menu" class="nav nav-pills nav-stacked">
+            <li>
+                <a id="update-basic-info" href="">Edit Information</a>
+            </li>
+            <li>
+                <a id="update-profile-photo" href="">Change Cover Photo</a>
+            </li>
+        </ul>
+    </div>
+    <div class="form-body">
+        {% include "products/edit-product.html" %}
+    </div>
+{% endblock %}

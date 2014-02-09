@@ -39,6 +39,8 @@ $(function () {
         e.preventDefault();
         var profileMenuType = e.target.id;
         showUserInfoForm(profileMenuType);
+        $('#profile-menu li').removeClass('active');
+        $(this).addClass('active');
     });
 
     $("#submit-basic-info-first-time-button").click(function (e) {
@@ -59,6 +61,8 @@ $(function () {
         e.preventDefault();
         submitSearch();
     });
+
+    var datePicker = $("#update-basic-info-first-time-form input[name='birthday']").datepicker();
 
 });
 
@@ -159,12 +163,13 @@ showUserInfoForm = function ($profileMenuType) {
     } else if ($profileMenuType == 'change-password') {
         url = '/user/change-password/'
     }
-    console.log(url);
+
     $.ajax({
         url: url,
         success: function (response) {
             $('#profile-update-default-view').hide();
             $('#profile-update-form').html(response);
+            var datePicker = $("#update-basic-info-form input[name='birthday']").datepicker();
         },
         error: commonErrorMessage
     });

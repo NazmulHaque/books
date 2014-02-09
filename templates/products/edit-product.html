@@ -1,0 +1,69 @@
+<div class="post-ad-form">
+    <h3>Post Your Ad</h3>
+
+    <form id="post-ad-form" role="form">{% csrf_token %}
+        <div class="form-group">
+            <div>
+                <label for="title">Title <span class="required">*</span></label>
+                <input type="text" class="form-control" name="title" value="{{  }}">
+            </div>
+            <div id="error-title" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="description">Description <span class="required">*</span></label>
+                <textarea name="description" class="form-control"></textarea>
+            </div>
+            <div id="error-description" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="category">Category <span class="required">*</span></label>
+                <select name="category" class="form-control">
+                    <option value="" selected="selected">Choose Category</option>
+                    {% for category in categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="error-category" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="condition">Condition <span class="required">*</span></label>
+                <select name="condition" class="form-control">
+                    <option value="" selected="selected">Choose Condition</option>
+                    {% for condition in conditions %}
+                        <option value="{{ condition }}">{{ condition }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="error-condition" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="language">Language <span class="required">*</span></label>
+                <select name="language" class="form-control">
+                    <option value="" selected="selected">Choose Language</option>
+                    {% for language in languages %}
+                        <option value="{{ language }}">{{ language }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="error-language" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="price">Price <span class="required">*</span></label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">Tk</span>
+                    <input type="text" class="form-control" name="price">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </div>
+            <div id="error-price" class="form-error"></div>
+        </div>
+        <button id="submit-ad-button" type="submit" class="btn btn-primary btn-lg btn-block">Post Ad</button>
+    </form>
+</div>

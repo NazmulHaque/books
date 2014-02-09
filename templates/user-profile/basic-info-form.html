@@ -1,61 +1,69 @@
-<h3>Update Basic Information</h3>
-<form id="update-basic-info-form" class="basic-info-form">{% csrf_token %}
-    <ul>
-        <li>
-            <div>
-                <div class="label">Full Name</div>
-                <div>
-                    <input type="text" name="fullname" value="{{ user_profile.fullname }}"/>
-                </div>
-                <div id="error-fullname" class="form-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Contact Number</div>
-                <div>
-                    <input type="text" name="contact_number" value="{{ user_profile.contact_number }}"/>
-                </div>
-                <div id="error-contact_number" class="form-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Contact Address</div>
-                <div>
-                    <textarea name="contact_address">{{ user_profile.contact_address }}</textarea>
-                </div>
-                <div id="error-contact_address" class="form-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Date of Birth</div>
-                <div>
-                    <input type="date" name="date_of_birth" value="{{ user_profile.date_of_birth|date:'Y-m-d' }}"/>
-                </div>
-                <div id="error-date_of_birth" class="form-error"></div>
-            </div>
-        </li>
-        <li>
-            <div>
-                <div class="label">Gender</div>
-                <div>
-                    {% if user_profile.gender == 'MALE' %}
-                        <input class="gender" type="radio" name="gender" value="MALE" checked/><span>Male</span>
-                        <input class="gender" type="radio" name="gender" value="FEMALE"/><span>Female</span>
-                    {% elif user_profile.gender == 'FEMALE' %}
-                        <input class="gender" type="radio" name="gender" value="MALE"/><span>Male</span>
-                        <input class="gender" type="radio" name="gender" value="FEMALE" checked/><span>Female</span>
-                    {% else %}
-                        <input class="gender" type="radio" name="gender" value="MALE"/><span>Male</span>
-                        <input class="gender" type="radio" name="gender" value="FEMALE"/><span>Female</span>
-                    {% endif %}
+<div class="basic-info-form">
+    <h3>Update Basic Information</h3>
 
-                </div>
-                <div id="error-gender" class="form-error"></div>
+    <form id="update-basic-info-form" role="form">{% csrf_token %}
+        <div class="form-group">
+            <div>
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" class="form-control" name="fullname" value="{{ user_profile.fullname }}">
             </div>
-        </li>
-    </ul>
-</form>
-<button id="submit-basic-info-button" class="info-submit-button" disabled>Update</button>
+            <div id="error-fullname" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="presentAddress">Present Address <span class="required">*</span></label>
+
+                <div>
+                    <textarea name="address" class="form-control">{{ user_profile.address }}</textarea>
+                </div>
+            </div>
+            <div id="error-address" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="upozila">Upozila/Police Station <span class="required">*</span></label>
+                <input type="text" class="form-control" name="upozila" value="{{ user_profile.upozila }}">
+            </div>
+            <div id="error-upozila" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="district">District <span class="required">*</span></label>
+                <select name="district" class="form-control">
+                    <option value="">Select District</option>
+                    {% for district in districts %}
+                        <option value="{{ district }}" {% if user_profile.district == district %}selected{% endif %}>{{ district }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="error-district" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="contactNumber">Contact Number <span class="required">*</span></label>
+                <input type="text" class="form-control" name="contact_number" value="{{ user_profile.contact_number }}">
+            </div>
+            <div id="error-contact_number" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="gender">Gender <span class="required">*</span></label>
+                <input type="radio" name="gender" value="Male"
+                       {% if user_profile.gender == 'Male' %}checked{% endif %}/><span>Male</span>
+                <input type="radio" name="gender" value="Female"
+                       {% if user_profile.gender == 'Female' %}checked{% endif %}/><span>Female</span>
+            </div>
+            <div id="error-gender" class="form-error"></div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="birthday">Date of Birth <span class="required">*</span></label>
+                <input type="text" class="form-control" name="birthday" value="{{ user_profile.birthday|date:'m/d/Y' }}">
+            </div>
+            <div id="error-birthday" class="form-error"></div>
+        </div>
+        <button id="submit-basic-info-button" type="button" class="btn btn-primary btn-lg btn-block"
+                disabled>Create Your Profile
+        </button>
+    </form>
+</div>

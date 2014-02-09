@@ -5,6 +5,11 @@ body {
 
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+}
+
 .clear {
     clear: both;
 }
@@ -14,6 +19,7 @@ body {
     padding: 0;
     background-color: #FAF0E6;
 }
+
 .nav-bar {
     width: 100%;
     height: 55px;
@@ -27,6 +33,7 @@ body {
     width: 75%;
     margin: 0 auto;
 }
+
 .logo {
     width: 25%;
     float: left;
@@ -42,7 +49,6 @@ body {
     width: 30%;
     text-align: right;
 }
-
 
 .content {
     width: 74%;
@@ -82,10 +88,6 @@ body {
 .profile-menu {
     padding: 0 0 0 5px;
     font-size: 18px;
-}
-
-.profile-menu button {
-    min-width: 160px;
 }
 
 .profile-menu ul li {
@@ -139,155 +141,17 @@ body {
 }
 
 .form-body {
-    width: 68%;
-}
-
-.left-sidebar ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.left-sidebar ul li {
-    width: 70%;
-    padding: 10px 0 10px 10px;
-    border-bottom: 2px solid #DCDCDC;
-    text-align: left;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.left-sidebar ul li:last-of-type {
-    border: none;
-}
-
-.profile-update-form {
-    width: 50%;
+    width: 30%;
     margin: 0 auto;
-    float: left;
-}
-
-.basic-info-form ul,
-.change-password-form ul,
-.post-ad-form ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.basic-info-form ul li,
-.change-password-form ul li,
-.post-ad-form ul li {
-    margin-bottom: 10px;
-}
-
-.basic-info-form ul li input,
-.change-password-form ul li input,
-.post-ad-form ul li input {
-    font-size: 14px;
-    padding: 10px;
-    width: 250px;
-}
-
-.basic-info-form ul li textarea,
-.post-ad-form ul li textarea {
-    height: 100px;
-    width: 250px;
-    padding: 10px;
-    font-size: 14px;
-}
-
-.post-ad-form ul li input.price {
-    width: 100px;
-    padding: 6px;
-}
-
-.basic-info-form ul li input.gender {
-    width: 20px;
-}
-
-.basic-info-form ul li .label,
-.change-password-form ul li .label {
-    font-size: 18px;
-}
-
-.info-submit-button,
-.change-password-button {
-    padding: 10px 40px 10px 40px;
-    font-size: 20px;
-    background-color: #0000FF;
-    color: #ffffff;
-    margin: 10px 0 0 60px;
-}
-
-.change-password-button {
-    padding: 10px;
-    background-color: #ff0000;
-    margin: 10px 0 0 42px;
-}
-
-.update-profile-photo-button {
-    padding: 5px;
-    background-color: #CCFFFF;
-    font-size: 14px;
-}
-
-.post-ad-button {
-    padding: 10px 30px 10px 30px;
-    margin: 10px 0 0 200px;
-    background-color: #CCFFFF;
-    font-size: 18px;
 }
 
 .user-ads-view {
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
 }
 
 .user-ads-view h3 {
     text-align: center;
-}
-
-.user-ads-view ul{
-    padding: 0;
-    margin: 0;
-}
-
-.user-ads-view ul li {
-    padding: 5px;
-    margin: 0;
-    text-align: center;
-    display: inline-block;
-    border-right: 2px solid #808080;
-    width: 120px;
-}
-
-.user-ads-view ul li:first-of-type {
-    width: 150px;
-}
-
-.user-ads-view ul li:nth-of-type(2) {
-    width: 230px;
-    text-align: left;
-}
-.user-ads-view ul:first-of-type li:nth-of-type(2) {
-    text-align: center;
-}
-.user-ads-view ul li:last-of-type {
-    width: 90px;
-    border: none;
-}
-.user-ads-view ul:nth-of-type(even) {
-    background-color: #C0C0C0;
-}
-
-.user-ads-view ul:nth-of-type(odd) {
-    background-color: #F5F5F5;
-}
-
-
-.user-ads-view ul:first-of-type {
-    background-color: #6495ED;
 }
 
 .search-result-view {
@@ -299,7 +163,7 @@ body {
     margin: 0 auto;
 }
 
-.search-result ul{
+.search-result ul {
     list-style-type: none;
 }
 
@@ -331,7 +195,7 @@ body {
 
 .product-title {
     width: 65%;
-    margin: 20px 0;
+    padding-top: 15px;
 }
 
 .product-title a {
@@ -351,6 +215,11 @@ body {
 .product-title .post-info {
     margin: 10px 0;
 }
+
+.post-info p {
+    margin: 0;
+}
+
 .product-price {
     width: 10%;
     margin: 20px 0;
@@ -358,29 +227,28 @@ body {
 
 .product-view-left, .product-view-right {
     float: left;
+    margin-top: 20px;
 }
 
 .product-view-left {
-    width: 70%;
+    width: 65%;
+    padding: 0 40px 0;
 }
 
 .product-view-right {
     width: 30%;
 }
 
-.product-view-left .product-photo {
-    margin: 10px 0;
-    border: 2px solid #000000;
-    text-align: center;
-}
 .product-description {
     border-radius: 5px;
     width: 97%;
     min-height: 50px;
     padding: 10px;
 }
-.product-view-left .product-photo img {
-    width: 400px;
+
+.product-view-left .thumbnail {
+    margin: 0 auto;
+    background-color: #bce8f1;
 }
 
 .login-view-left-side, .login-view-right-side {
@@ -405,7 +273,7 @@ body {
 }
 
 .recent-posts-view .paginator,
-.search-result-view .paginator{
+.search-result-view .paginator {
     float: right;
     margin: 0 97px 0;
 }
@@ -413,24 +281,55 @@ body {
 .alert-danger {
     display: none;
 }
-.navbar-form {
-    width: 100%;
+
+.basic-info-first-time-form {
+    width: 30%;
+    margin: 0 auto;
 }
 
-.navbar-form div {
-    float: left;
-    margin-right: 10px;
+input[type="radio"] {
+    margin: 0 10px 0;
 }
 
-.navbar {
-    margin-bottom: 0;
+.post-ad-form {
+    width: 35%;
+    margin: 0 auto;
 }
 
-.navbar-nav.navbar-right:last-child {
-    margin-right: 0;
+.post-ad-form h3 {
+    text-align: center;
 }
 
-.navbar-nav.navbar-right li {
-    margin-right: 10px;
+.post-ad-form .input-group {
+    width: 45%;
 }
 
+.post-ad-form .input-group input {
+    text-align: right;
+}
+
+.search-box nav {
+    width: 77%;
+    margin: 0 auto;
+}
+
+.img-circle {
+    height: 40px;
+    margin-top: 5px;
+}
+
+.table-striped, th {
+    text-align: center;
+}
+
+.table-striped tr td:first-of-type {
+    text-align: left;
+}
+
+.table-striped tr th:first-of-type, .table-striped tr td:first-of-type {
+    width: 50%;
+}
+
+.table-striped tr th:last-of-type, .table-striped tr td:last-of-type {
+    width: 15%;
+}

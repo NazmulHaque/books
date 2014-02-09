@@ -2,25 +2,61 @@
 
 {% block content %}
     <div class="product-view-left">
-        <h2>{{ product.title|capfirst }}</h2>
-
-        <div class="product-photo">
-            {% if product.thumbnail %}
-                <img src="/{{ product.thumbnail }}" alt="product photo"/>
-            {% else %}
-                <img src="/static/img/product_photos/default.png" alt="product photo"/>
-            {% endif %}
-        </div>
-        <div>
-            <h3>About this book</h3>
-            <div class="product-description">
-                {{ product.description|linebreaks  }}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                {{ product.title }}
             </div>
         </div>
+        <p>Posted by {{ product.user.userprofile.fullname }} on {{ product.created_at|date:'d M Y' }}
+            from {{ product.user.userprofile.upozila }}, {{ product.user.userprofile.district }}</p>
+
+        <div class="thumbnail">
+            {% if product.thumbnail %}
+                <img src="{{ product.thumbnail }}" alt="product photo"/>
+            {% endif %}
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">About this book</h3>
+            </div>
+            <div class="panel-body">
+                {{ product.description|linebreaks }}
+            </div>
+        </div>
+
     </div>
     <div class="product-view-right">
-        <div>
-            Category: {{ product.category }}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Category</h3>
+            </div>
+            <div class="panel-body">
+                {{ product.category }}
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Condition</h3>
+            </div>
+            <div class="panel-body">
+                {{ product.condition }}
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Price</h3>
+            </div>
+            <div class="panel-body">
+                Tk {{ product.price }}.00
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Contact Number</h3>
+            </div>
+            <div class="panel-body">
+                {{ product.user.userprofile.contact_number }}
+            </div>
         </div>
     </div>
 

@@ -1,12 +1,13 @@
 # Django settings for books project.
 import os
-PROJECT_PATH =  os.path.dirname(os.path.dirname(__file__))
+
+PROJECT_PATH = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = True
 #TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+# ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
@@ -14,11 +15,11 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'books',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'qweqwe',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': 'books', # Or path to database file if using sqlite3.
+        'USER': 'root', # Not used with sqlite3.
+        'PASSWORD': 'qweqwe', # Not used with sqlite3.
+        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -81,7 +82,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -91,7 +92,7 @@ SECRET_KEY = '+k!=y2#m=)!o2wi_e+w8!z%=4wijz1=y1!z_j&amp;&amp;daem21xgny8'
 TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.filesystem.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,7 +131,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'products',
     'userprofile',
-    'south'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -163,3 +163,47 @@ LOGGING = {
 }
 
 AUTH_PROFILE_MODULE = 'userprofile.UserProfile'
+
+GENDER_CHOICES = (
+    ('Male', 'MALE',),
+    ('Female', 'FEMALE',),
+)
+
+DEFAULT_PROFILE_PHOTO = "/static/img/profile-photos/default.png"
+
+DEFAULT_PRODUCT_PHOTO = "/static/img/product-photos/default.png"
+
+DISTRICT_CHOICES = (
+    ('Dhaka', 'DHAKA'),
+    ('Chittagong', 'CHITTAGONG'),
+)
+
+PRODUCT_CONDITION = (
+    ('New', 'NEW'),
+    ('Used', 'USED'),
+)
+
+PRODUCT_LANGUAGES = (
+    ('Bangla', 'BN'),
+    ('English', 'EN'),
+    ('Arabia', 'AR'),
+)
+
+PRODUCT_STATUS = (
+    ('Approval', 'APPROVAL'),
+    ('Public', 'PUBLIC'),
+    ('Sold', 'SOLD'),
+    ('Deleted', 'DELETED'),
+)
+
+PRODUCT_CATEGORY = (
+    ('Academic', 'AC'),
+    ('Noble', 'NOBLE'),
+    ('Journal', 'JOURNAL'),
+
+)
+
+DISTRICT_LIST = ['Dhaka', 'Chittagong']
+PRODUCT_LANGUAGES_LIST = ['English', 'Bangla', 'Arabia']
+PRODUCT_CONDITION_LIST = ['New', 'Used']
+PRODUCT_CATEGORY_LIST = ['Academic', 'Noble', 'Journal']

@@ -1,5 +1,7 @@
 {% if products %}
-    <h4>All Search Results ({{ total_products }})</h4>
+    <h4 class="btn btn-primary">
+        All Search Posts <span class="badge">{{ total_products }}</span>
+    </h4>
     <input type="hidden" name="total" value="{{ total_products }}"/>
     <ul>
         {% for product in products %}
@@ -8,29 +10,29 @@
                     <div class="product-thumbnail">
                         <div>
                             {% if product.thumbnail %}
-                                <img src="/{{ product.thumbnail }}" alt="product photo"/>
-                            {% else %}
-                                <img src="/static/img/product_photos/default.png" alt="product photo"/>
+                                <img src="{{ product.thumbnail }}" alt="product photo"/>
                             {% endif %}
                         </div>
                     </div>
                     <div class="product-title">
                         <a href="/product/{{ product.id }}" target="_blank">
                             <div class="title">
-                                {{ product.title|capfirst }}
+                                {{ product.title|truncatewords:6 }}
                             </div>
                         </a>
 
                         <div class="post-info">
-                            <span>Posted on {{ product.created_at|date:"d M Y" }} by {{ product.user.userprofile.fullname }}</span>
+                            <p>Posted on {{ product.created_at|date:"d M Y" }}
+                                from {{ product.user.userprofile.upozila }}, {{ product.user.userprofile.district }}</p>
+
+                            <p>Category:{{ product.category }} | Condition: {{ product.condition }}</p>
 
                         </div>
                     </div>
                     <div class="product-price">
-                        <span>{{ product.money_type }} {{ product.price }}</span>
+                        <span>Tk {{ product.price }}</span>
 
                     </div>
-
                 </div>
             </li>
         {% endfor %}

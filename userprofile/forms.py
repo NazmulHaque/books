@@ -4,14 +4,13 @@ from models import UserProfile
 class UploadProfilePhoto(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('profile_photo',)
+        fields = ('photo',)
 
 class UserBasicInfoForm(forms.ModelForm):
-    gender = forms.ChoiceField(widget=forms.RadioSelect(),
-                 choices=UserProfile.GENDER_CHOICES)
-    contact_address = forms.CharField (widget=forms.widgets.Textarea(), required=False)
+    contact_number = forms.CharField(required=True)
+    birthday = forms.DateField(required=True)
 
     class Meta:
         model = UserProfile
-        exclude = ['user', 'profile_photo']
+        exclude = ['user', 'photo']
 

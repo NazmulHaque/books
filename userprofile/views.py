@@ -11,6 +11,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from forms import UploadProfilePhoto, UserBasicInfoForm
 from books.utils import JSONEncoder
 from userprofile.models import UserProfile
+from books import settings
 
 
 @login_required(login_url='/login-view')
@@ -57,6 +58,7 @@ def update_basic_info(request):
     context.update(csrf(request))
     form = UserBasicInfoForm()
     context['form'] = form
+    context['districts'] = settings.DISTRICT_LIST
 
     if request.method == 'POST':
         form = UserBasicInfoForm(data=request.POST, instance=request.user.profile)
@@ -113,9 +115,11 @@ def update_basic_info_first_time(request):
         context.update(csrf(request))
         form = UserBasicInfoForm()
         context['form'] = form
+        context['districts'] = settings.DISTRICT_LIST
 
         if request.user.is_authenticated():
             context['login_mode'] = True
+
         if request.method == 'POST':
             form = UserBasicInfoForm(data=request.POST, instance=request.user.profile)
             if form.is_valid():

@@ -1,16 +1,14 @@
 <h3>Change Profile Photo</h3>
 <div>
-    {% if user_profile.profile_photo %}
-        <img src="/{{ user_profile.profile_photo }}" alt="Profile Photo" height="150px"/>
-    {% else %}
-        <img src="{{ STATIC_URL }}/static/img/profile_photos/default.png" alt="Profile Photo"/>
+    {% if user_profile.photo %}
+        <img src="{{ user_profile.photo }}" alt="Profile Photo" height="150px"/>
     {% endif %}
 </div>
 <div>
     {{ error }}
     <form id="update-profile-photo-form" action="/user/upload-profile-photo/" method="POST"
           enctype="multipart/form-data">{% csrf_token %}
-        <input type="file" name="profile_photo"/>
-        <button id="submit-profile-photo-form" class="update-profile-photo-button" type="submit">Update Profile Photo</button>
+        <input type="file" name="photo"/>
+        <button id="submit-profile-photo-form" class="update-profile-photo-button" type="submit">Change Profile Photo</button>
     </form>
 </div>
